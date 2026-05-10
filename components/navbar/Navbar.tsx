@@ -23,9 +23,6 @@ export function Navbar() {
             <a className="transition-colors hover:text-brand-accent" href="#contact">
               Contact
             </a>
-            <Link className="transition-colors hover:text-brand-cyan" href="/dashboard">
-              Dashboard
-            </Link>
           </nav>
           <NavbarProfile />
         </div>
