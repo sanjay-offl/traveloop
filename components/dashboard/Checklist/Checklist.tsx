@@ -1,31 +1,76 @@
-const tasks = [
-  { label: 'Passport valid 6+ months', done: true },
-  { label: 'Travel insurance quote', done: true },
-  { label: 'eSIM or pocket Wi‑Fi', done: false },
-  { label: 'ATM notify bank', done: false },
-  { label: 'Download offline maps', done: false },
-] as const
+'use client'
+
+import { useState } from 'react'
+import { useChecklist } from '../../../hooks/useChecklist'
+import { useTrips } from '../../../hooks/useTrips'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { packingItemSchema, type PackingItemInput } from '../../../lib/validations'
 
 export function Checklist() {
+  const { trips } = useTrips()
+  const activeTrip = trips.find(t => t.status !== 'archived')
+  const { items, loading, toggleItem, addItem } = useChecklist(activeTrip?.id || null)
+
+  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<any>({
+    resolver: zodResolver(packingItemSchema),
+    defaultValues: { category: 'other' }
+  })
+
+  const doneCount = items.filter(t => t.is_packed).length
+  const total = items.length
+  const pct = total === 0 ? 0 : Math.round((doneCount / total) * 100)
+
+  const onSubmit = async (data: PackingItemInput) => {
+    const err = await addItem(data)
+    if (!err) reset()
+  }
+
+  if (!activeTrip) return null
+
   return (
     <section id="checklist" className="mb-8 scroll-mt-24">
-      <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Trip checklist</h2>
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-zinc-900 dark:text-zinc-100 text-lg font-extrabold tracking-tight">Trip checklist</h2>
+        <span className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+          {doneCount}/{total}
+        </span>
+      </div>
       <div className="card-premium p-5">
-        <ul className="space-y-3">
-          {tasks.map((t) => (
-            <li key={t.label} className="flex items-center gap-3">
-              <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm transition-all ${
-                  t.done
-                    ? 'border-blue-600 dark:border-blue-500 bg-blue-600 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400'
-                    : 'border-black/5 dark:border-white/10 text-transparent'
-                }`}
-              >
-                ✓
-              </span>
-              <span className={t.done ? 'text-zinc-600 dark:text-zinc-400 line-through' : 'text-zinc-600 dark:text-zinc-400'}>{t.label}</span>
-            </li>
-          ))}
+        <div className="mb-5">
+          <div className="flex justify-between text-xs text-zinc-500 dark:text-zinc-500 mb-1.5">
+            <span>Progress</span>
+            <span className="font-medium text-blue-600 dark:text-blue-400">{pct}%</span>
+          </div>
+          <div className="h-1.5 rounded-full bg-black/5 dark:bg-white/8 overflow-hidden">
+            <div className="h-full rounded-full bg-blue-600 dark:bg-blue-500 transition-all duration-500" style={{ width: `${pct}%` }} />
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit as any)} className="mb-4">
+          <div className="relative">
+            <input type="text" {...register('item_name')} placeholder="Add item..." className="form-input text-sm py-2 pl-3 pr-10 w-full" disabled={isSubmitting} />
+            <button type="submit" disabled={isSubmitting} className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 dark:text-blue-400 hover:text-blue-700 disabled:opacity-50">
+              <span className="material-symbols-outlined text-xl">add_circle</span>
+            </button>
+          </div>
+        </form>
+
+        <ul className="space-y-1 max-h-48 overflow-y-auto sidebar-scroll">
+          {loading ? (
+             Array.from({ length: 3 }).map((_, i) => <li key={i} className="h-8 w-full bg-black/5 dark:bg-white/5 animate-pulse rounded-md my-1" />)
+          ) : items.length === 0 ? (
+             <li className="text-xs text-center text-zinc-500 py-3">No items yet. Add one above!</li>
+          ) : (
+            items.map((t) => (
+              <li key={t.id}>
+                <button type="button" onClick={() => toggleItem(t.id, t.is_packed)} className="flex items-center gap-3 w-full text-left group py-2 px-2 rounded-lg hover:bg-black/3 dark:hover:bg-white/3 transition-colors">
+                  <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-xs transition-all ${t.is_packed ? 'border-blue-600 bg-blue-600 text-white' : 'border-black/15 text-transparent'}`}>✓</span>
+                  <span className={`text-sm transition-colors ${t.is_packed ? 'text-zinc-400 line-through' : 'text-zinc-700 dark:text-zinc-300'}`}>{t.item_name}</span>
+                </button>
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </section>

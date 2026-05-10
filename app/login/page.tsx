@@ -1,156 +1,144 @@
-"use client";
+'use client'
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
-import { createClient } from '../../utils/supabase/client';
+import React, { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { createClient } from '../../utils/supabase/client'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginSchema, type LoginInput } from '../../lib/validations'
 
 const LoginPage: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false)
+  const [serverError, setServerError] = useState('')
+  const router = useRouter()
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+  })
 
-    if (!email.trim() || !password.trim()) {
-      setError('Please enter your email and password.');
-      return;
+  const onSubmit = async (data: LoginInput) => {
+    setServerError('')
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({
+      email: data.email,
+      password: data.password,
+    })
+
+    if (error) {
+      setServerError(error.message)
+      return
     }
 
-    setLoading(true);
-    setError('');
-
-    const supabase = createClient();
-    const { error: authError } = await supabase.auth.signInWithPassword({
-      email: email.trim(),
-      password,
-    });
-
-    if (authError) {
-      setError(authError.message || 'Unable to sign in. Please try again.');
-      setLoading(false);
-      return;
-    }
-
-    setLoading(false);
-    router.push('/dashboard');
-    router.refresh();
-  };
+    router.push('/dashboard')
+    router.refresh()
+  }
 
   return (
-    <div className="flex min-h-screen flex-col font-sans relative overflow-hidden">
-      {/* Ambient glow */}
-      
-      
-
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-[#F5F5F5] dark:bg-[#050505] backdrop-blur-xl px-4 py-4 md:px-10">
-        <Link href="/" className="font-sans text-2xl font-bold tracking-tight transition-opacity hover:opacity-80 md:text-3xl">
+    <div className="flex min-h-screen flex-col bg-[#F1F1F1] dark:bg-[#050505] font-sans">
+      <header className="flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl px-4 py-4 md:px-10">
+        <Link href="/" className="font-sans text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
           <span className="text-zinc-900 dark:text-zinc-100">Traveloop</span>
         </Link>
-        <div className="flex items-center gap-4">
-          <button
-            type="button"
-            className="rounded-full p-2 transition-colors hover:bg-blue-600 dark:bg-blue-500/10 active:scale-95"
-            aria-label="Help"
-          >
-            <span className="material-symbols-outlined text-xl text-blue-600 dark:text-blue-400">help_outline</span>
-          </button>
+        <div className="flex items-center gap-3">
+          <span className="hidden text-sm text-zinc-500 dark:text-zinc-400 sm:inline">Don't have an account?</span>
+          <Link href="/register" className="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline font-accent">
+            Sign up
+          </Link>
         </div>
       </header>
 
-      {/* Main Content Canvas */}
-      <main className="flex flex-grow items-center justify-center px-4 pb-12 pt-24 md:px-10 relative z-10">
-        <div className="w-full max-w-[440px]">
-          {/* Login Card */}
-          <div className="section-card p-8">
-            {/* Profile/Icon Header */}
-            <div className="flex flex-col items-center mb-10">
-              <div className="w-24 h-24 rounded-full bg-[#EAEAEA] dark:bg-[#1A1A1A] flex items-center justify-center mb-6 overflow-hidden border-4 border-bg-base shadow-glow-sm">
-                <img 
-                  alt="Profile" 
-                  className="w-full h-full object-cover" 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY1eQp60wqYOk3fk6drIgPytVZIT6kpZW4HBxJq1PNs_Nt2eg8wvzgIqVaSr-IXcOC7b4tswSCllFdcpGqmyd-WsYQoHlGz8kpqT1_WPL8A1tUcXHTEq_K8sWnTiouZQo3IWXnu8cJof8n85i_J3K7oZShbBm0bi01NWxbI6cMsw1WYjy6TmRUWkEiv4l8yo1BjYTvaUAGH6ZzftRjhmoaQX556P9aKXEFfpntDi-rVYeQw80EQCyX3Cg3lS-COXOefRgdAq7QHt9v" 
-                />
-              </div>
-              <h1 className="text-zinc-900 dark:text-zinc-100 mb-2 text-3xl font-extrabold tracking-tight">Welcome Back</h1>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 text-center">Log in to your dashboard to manage your upcoming adventures.</p>
+      <main className="flex-grow flex items-start justify-center py-10 px-4">
+        <div className="w-full max-w-[440px] section-card overflow-hidden">
+          <div className="pt-10 pb-6 flex flex-col items-center">
+            <div
+              className="w-14 h-14 rounded-2xl flex items-center justify-center text-white mb-5"
+              style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}
+            >
+              <span className="material-symbols-outlined text-3xl">flight_takeoff</span>
             </div>
+            <h1 className="text-zinc-900 dark:text-zinc-100 text-2xl font-extrabold tracking-tight text-center">Welcome back</h1>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2 text-center">Enter your details to sign in</p>
+          </div>
 
-            {/* Form Fields */}
-            <form className="space-y-6" onSubmit={handleLogin}>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold text-white/80 block" htmlFor="email">Email</label>
-                <div className="relative group">
-                  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 group-focus-within:text-blue-600 dark:text-blue-400 transition-colors">mail</span>
-                  <input
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
-                    id="email"
-                    placeholder="Enter your email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    autoComplete="email"
-                  />
-                </div>
+          <div className="px-8 md:px-10 pb-10">
+            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>
+              <div>
+                <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 block mb-1.5" htmlFor="email">
+                  Email address
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  autoComplete="email"
+                  placeholder="you@example.com"
+                  {...register('email')}
+                  className={`form-input ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30' : ''}`}
+                  disabled={isSubmitting}
+                />
+                {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>}
               </div>
 
-              <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-white/80 block" htmlFor="password">Password</label>
-                  <a className="text-xs text-blue-600 dark:text-blue-400 hover:underline" href="#">Forgot password?</a>
+              <div>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300" htmlFor="password">
+                    Password
+                  </label>
+                  <a className="text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline" href="#">
+                    Forgot password?
+                  </a>
                 </div>
-                <div className="relative group">
-                  <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 group-focus-within:text-blue-600 dark:text-blue-400 transition-colors">lock</span>
+                <div className="relative">
                   <input
-                    className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
                     id="password"
-                    placeholder="Enter your password"
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
+                    placeholder="••••••••"
+                    {...register('password')}
+                    className={`form-input pr-11 ${errors.password ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30' : ''}`}
+                    disabled={isSubmitting}
                   />
                   <button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 hover:text-blue-600 dark:text-blue-400 transition-colors"
-                    onClick={() => setShowPassword(!showPassword)}
                     type="button"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    onClick={() => setShowPassword(v => !v)}
+                    tabIndex={-1}
                   >
-                    <span className="material-symbols-outlined">{showPassword ? "visibility" : "visibility_off"}</span>
+                    <span className="material-symbols-outlined text-xl">{showPassword ? 'visibility' : 'visibility_off'}</span>
                   </button>
                 </div>
+                {errors.password && <p className="text-xs text-red-500 mt-1">{errors.password.message}</p>}
               </div>
 
-              {error ? (
-                <p className="text-sm text-red-500">{error}</p>
-              ) : null}
+              {serverError && (
+                <div className="flex items-start gap-2 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 px-4 py-3">
+                  <span className="material-symbols-outlined text-red-500 text-lg flex-shrink-0 mt-0.5">error</span>
+                  <p className="text-sm text-red-600 dark:text-red-400">{serverError}</p>
+                </div>
+              )}
 
               <button
                 type="submit"
-                disabled={loading}
-                className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform w-full py-3.5 text-base font-bold"
+                disabled={isSubmitting}
+                className="btn-primary w-full py-3.5 text-base rounded-xl mt-2"
               >
-                {loading ? 'Signing in...' : 'Sign In'}
+                {isSubmitting ? (
+                  <span className="flex items-center gap-2 justify-center">
+                    <span className="h-4 w-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                    Signing in…
+                  </span>
+                ) : 'Sign In'}
               </button>
             </form>
-
-            <div className="mt-8 border-t border-black/5 dark:border-white/10 pt-6 text-center">
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                Don&apos;t have an account?{' '}
-                <Link href="/register" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
-                  Create one
-                </Link>
-              </p>
-            </div>
           </div>
         </div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

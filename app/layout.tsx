@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '../components/theme/ThemeProvider'
+import { ToastProvider } from '../components/ui/Toast'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -52,7 +53,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="bg-[#F1F1F1] dark:bg-[#050505] text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-blue-600 dark:selection:bg-blue-500/20 selection:text-white dark:selection:text-white transition-colors duration-300">
         <ThemeProvider>
-          {children}
+          <ToastProvider>
+            {children}
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>

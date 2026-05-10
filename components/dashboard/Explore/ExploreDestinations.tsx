@@ -8,21 +8,21 @@ const destinations = [
 ]
 
 const tagColors: Record<string, { text: string; bg: string }> = {
-  Trending: { text: '#38BDF8', bg: 'rgba(56,189,248,0.12)' },
-  Cultural: { text: '#8B5CF6', bg: 'rgba(139,92,246,0.12)' },
-  Adventure: { text: '#86EFAC', bg: 'rgba(134,239,172,0.12)' },
-  Romantic: { text: '#F87171', bg: 'rgba(248,113,113,0.12)' },
+  Trending: { text: '#60A5FA', bg: 'rgba(59,130,246,0.15)' },
+  Cultural: { text: '#A78BFA', bg: 'rgba(139,92,246,0.15)' },
+  Adventure: { text: '#4ADE80', bg: 'rgba(74,222,128,0.15)' },
+  Romantic: { text: '#F87171', bg: 'rgba(248,113,113,0.15)' },
 }
 
 export function Explore() {
   return (
     <section id="explore" className="mb-8 scroll-mt-24">
-      <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Explore Destinations</h2>
-      <div className="card-premium p-6">
-        <div className="flex items-center justify-between mb-5">
-          <p className="text-xs text-zinc-600 dark:text-zinc-400 font-accent">Handpicked for you</p>
-          <button className="btn-glass px-4 py-2 text-xs font-accent">Browse all</button>
-        </div>
+      <div className="mb-4 flex items-center justify-between">
+        <h2 className="text-zinc-900 dark:text-zinc-100 text-lg font-extrabold tracking-tight">Explore Destinations</h2>
+        <button className="btn-ghost text-xs px-3 py-1.5">Browse all</button>
+      </div>
+      <div className="card-premium p-5">
+        <p className="text-xs text-zinc-500 dark:text-zinc-500 mb-4 font-accent">Handpicked for you</p>
 
         <div className="grid grid-cols-2 gap-3">
           {destinations.map((dest) => {
@@ -38,26 +38,32 @@ export function Explore() {
                   alt={dest.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,18,32,0.9) 0%, transparent 60%)' }} />
+                {/* Overlay — always dark for text readability */}
+                <div
+                  className="absolute inset-0"
+                  style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.20) 55%, transparent 100%)' }}
+                />
 
+                {/* Tag */}
                 <div className="absolute top-3 left-3">
                   <span
-                    className="text-xs px-2 py-0.5 rounded-full font-medium font-accent backdrop-blur-md"
-                    style={{ background: tc.bg, color: tc.text, fontSize: 10 }}
+                    className="text-[10px] px-2 py-0.5 rounded-full font-semibold font-accent backdrop-blur-md"
+                    style={{ background: tc.bg, color: tc.text }}
                   >
                     {dest.tag}
                   </span>
                 </div>
 
+                {/* Info — always white text since we're over a dark overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="flex items-end justify-between">
                     <div>
-                      <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{dest.name}</div>
-                      <div className="text-xs text-zinc-600 dark:text-zinc-400">{dest.country}</div>
+                      <div className="text-sm font-semibold text-white leading-tight">{dest.name}</div>
+                      <div className="text-xs text-white/70">{dest.country}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-blue-600 dark:text-blue-400">★ {dest.rating}</div>
-                      <div className="text-xs text-zinc-900 dark:text-zinc-100 font-medium">{dest.cost}</div>
+                      <div className="text-xs text-yellow-300">★ {dest.rating}</div>
+                      <div className="text-xs text-white/90 font-medium">{dest.cost}</div>
                     </div>
                   </div>
                 </div>
