@@ -19,6 +19,7 @@ const miniCalNums = [
 ]
 const tripDays = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 
+<<<<<<< HEAD
 export function Calendar() {
   return (
     <section id="calendar" className="mb-8 scroll-mt-24">
@@ -30,6 +31,58 @@ export function Calendar() {
             <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-white/40">‹</button>
             <span className="text-xs px-2 text-white">Jun</span>
             <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-white/40">›</button>
+=======
+export default function Calendar() {
+  return (
+    <div id="calendar" className="card scroll-mt-24 p-6">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <h3 className="text-base font-medium text-white" style={{ fontFamily: 'Fraunces, serif' }}>Travel Calendar</h3>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+            Upcoming dates · activities timeline · reminders
+          </p>
+        </div>
+        <div className="flex items-center gap-1">
+          <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/5" style={{ color: 'var(--muted)' }}>‹</button>
+          <span className="text-xs px-2" style={{ color: 'var(--text)' }}>Jun</span>
+          <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/5" style={{ color: 'var(--muted)' }}>›</button>
+        </div>
+      </div>
+
+      {/* Mini calendar */}
+      <div className="mb-5">
+        <div className="grid grid-cols-7 mb-1">
+          {miniCalDays.map((d, i) => (
+            <div key={i} className="text-center text-xs py-1" style={{ color: 'var(--muted)', fontSize: 10 }}>{d}</div>
+          ))}
+        </div>
+        {miniCalNums.map((week, wi) => (
+          <div key={wi} className="grid grid-cols-7">
+            {week.map((day, di) => {
+              const inTrip = day && tripDays.includes(day)
+              const isFirst = day === 14
+              const isLast = day === 24
+              return (
+                <div
+                  key={di}
+                  className="flex items-center justify-center h-7 text-xs cursor-pointer transition-colors"
+                  style={{
+                    fontSize: 11,
+                    color: !day ? 'transparent' : inTrip ? (isFirst || isLast ? '#010302' : 'var(--cyan)') : 'var(--muted)',
+                    background: inTrip
+                      ? isFirst || isLast
+                        ? 'var(--cyan)'
+                        : 'rgba(82,227,232,0.12)'
+                      : 'transparent',
+                    borderRadius: isFirst ? '8px 0 0 8px' : isLast ? '0 8px 8px 0' : inTrip ? 0 : 6,
+                    fontWeight: isFirst || isLast ? 600 : 400,
+                  }}
+                >
+                  {day || ''}
+                </div>
+              )
+            })}
+>>>>>>> origin/main
           </div>
         </div>
 

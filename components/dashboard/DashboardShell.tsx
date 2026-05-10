@@ -9,11 +9,15 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   return (
+<<<<<<< HEAD
     <div className="flex min-h-screen bg-[#0B1220] text-white">
+=======
+    <div className="flex min-h-screen text-white" style={{ background: 'var(--bg)' }}>
+>>>>>>> origin/main
       <Sidebar mobileOpen={mobileNavOpen} onMobileClose={() => setMobileNavOpen(false)} />
-      <div className="flex min-h-screen flex-1 flex-col lg:pl-64">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
         <DashboardHeader onOpenNav={() => setMobileNavOpen(true)} />
-        <main className="flex-1 overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8">{children}</main>
+        <main className="main flex-1 overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8">{children}</main>
       </div>
     </div>
   )
