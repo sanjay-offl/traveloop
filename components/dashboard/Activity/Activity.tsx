@@ -8,16 +8,16 @@ const rows = [
 export function Activity() {
   return (
     <section id="activity" className="mb-8 scroll-mt-24">
-      <h2 className="mb-4 font-display text-lg font-semibold text-white">Recent activity</h2>
-      <ul className="section-card divide-y divide-white/10 rounded-2xl border border-white/10">
+      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Recent activity</h2>
+      <ul className="card-premium divide-y divide-white/[0.06]">
         {rows.map((row) => (
           <li key={row.action} className="flex items-center gap-4 px-5 py-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/[0.06] text-brand-cyan">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-accent" style={{ background: 'linear-gradient(135deg, rgba(37,99,235,0.12), rgba(56,189,248,0.08))' }}>
               <span className="material-symbols-outlined text-xl">{row.icon}</span>
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-medium text-white">{row.action}</p>
-              <p className="text-xs text-white/45">{row.when}</p>
+              <p className="text-xs text-white/40">{row.when}</p>
             </div>
           </li>
         ))}

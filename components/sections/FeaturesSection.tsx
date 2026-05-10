@@ -19,10 +19,10 @@ export function Features() {
   return (
     <section id="experiences" className="mb-6 scroll-mt-28">
       <div className="mb-8 grid gap-4">
-        <p className="m-0 text-xs uppercase tracking-[0.18em] text-[var(--accent-2)]">Experience blocks</p>
+        <p className="m-0 text-xs uppercase tracking-[0.18em] text-brand-accent font-accent font-semibold">Experience blocks</p>
         <h2
           id="stories"
-          className="m-0 max-w-2xl font-serif text-[clamp(1.85rem,3.2vw,2.85rem)] font-semibold leading-tight text-white"
+          className="heading-gradient m-0 max-w-2xl text-[clamp(1.85rem,3.2vw,2.85rem)] font-extrabold leading-tight tracking-tight"
         >
           A flexible structure for a travel brand.
         </h2>

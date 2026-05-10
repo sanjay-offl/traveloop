@@ -41,7 +41,7 @@ const destinations = [
 
 export default function PopularDestinations() {
   return (
-    <section className="py-28 px-6 bg-brand-black" id="destinations">
+    <section className="py-28 px-6" id="destinations">
       <div className="max-w-7xl mx-auto">
         <div
           className="mb-16 flex flex-col justify-between reveal md:flex-row md:items-end"
@@ -49,21 +49,21 @@ export default function PopularDestinations() {
         >
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-brand-cyan" />
-              <span className="font-ui text-xs uppercase tracking-widest text-brand-cyan">Handpicked For You</span>
+              <div className="h-px w-8 bg-brand-accent" />
+              <span className="font-accent text-xs uppercase tracking-widest text-brand-accent font-semibold">Handpicked For You</span>
             </div>
-            <h2 className="font-serif text-5xl font-bold leading-tight text-white lg:text-6xl">
+            <h2 className="heading-gradient text-5xl font-extrabold leading-tight tracking-tight lg:text-6xl">
               Popular
               <br />
-              <span className="italic text-white/45">Destinations</span>
+              Destinations
             </h2>
           </div>
           <a
             href="/explore"
-            className="group mt-8 flex items-center gap-3 font-ui text-sm text-white/50 transition-colors hover:text-brand-cyan md:mt-0"
+            className="group mt-8 flex items-center gap-3 font-accent text-sm text-white/40 transition-colors hover:text-brand-accent md:mt-0"
           >
             <span className="uppercase tracking-widest text-xs">View all</span>
-            <div className="w-8 h-8 rounded-full border border-white/20 group-hover:border-brand-cyan flex items-center justify-center transition-colors">
+            <div className="w-8 h-8 rounded-full border border-white/15 group-hover:border-brand-accent flex items-center justify-center transition-all group-hover:shadow-glow-sm">
               <span className="text-xs">→</span>
             </div>
           </a>
@@ -73,13 +73,13 @@ export default function PopularDestinations() {
           {destinations.map((dest, i) => (
             <div
               key={dest.name}
-              className={`dest-card group cursor-pointer reveal rounded-2xl ${i === 1 ? 'sm:translate-y-8' : ''}`}
+              className={`dest-card group cursor-pointer reveal ${i === 1 ? 'sm:translate-y-8' : ''}`}
               style={{ height: 480, animationDelay: `${0.1 + i * 0.09}s` }}
             >
               <img src={dest.image} alt={dest.name} />
 
               <div className="absolute left-4 top-4 z-10">
-                <span className="rounded-full border border-brand-cyan/30 bg-brand-cyan-dim px-3 py-1 font-ui text-xs font-semibold uppercase tracking-widest text-brand-cyan">
+                <span className="rounded-full border border-brand-accent/25 bg-brand-accent-dim px-3 py-1 font-accent text-xs font-semibold uppercase tracking-widest text-brand-accent backdrop-blur-md">
                   {dest.tag}
                 </span>
               </div>
@@ -87,16 +87,16 @@ export default function PopularDestinations() {
               <div className="card-content">
                 <div className="mb-2 flex items-start justify-between">
                   <div>
-                    <h3 className="font-serif text-xl font-bold text-white">{dest.name}</h3>
-                    <p className="mt-0.5 text-xs uppercase tracking-widest text-white/45">{dest.country}</p>
+                    <h3 className="text-xl font-bold text-white">{dest.name}</h3>
+                    <p className="mt-0.5 text-xs uppercase tracking-widest text-white/40">{dest.country}</p>
                   </div>
-                  <span className="text-xs font-semibold text-brand-cyan">★ {dest.rating}</span>
+                  <span className="text-xs font-semibold text-brand-accent">★ {dest.rating}</span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-4">
-                  <span className="text-xs text-white/40">{dest.duration}</span>
+                <div className="mt-4 flex items-center justify-between border-t border-white/[0.08] pt-4">
+                  <span className="text-xs text-white/35">{dest.duration}</span>
                   <span className="text-sm font-semibold text-white">
-                    from <span className="text-brand-cyan">{dest.price}</span>
+                    from <span className="text-brand-accent">{dest.price}</span>
                   </span>
                 </div>
               </div>

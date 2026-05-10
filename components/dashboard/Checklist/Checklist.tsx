@@ -9,21 +9,21 @@ const tasks = [
 export function Checklist() {
   return (
     <section id="checklist" className="mb-8 scroll-mt-24">
-      <h2 className="mb-4 font-display text-lg font-semibold text-white">Trip checklist</h2>
-      <div className="section-card rounded-2xl border border-white/10 p-5">
+      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Trip checklist</h2>
+      <div className="card-premium p-5">
         <ul className="space-y-3">
           {tasks.map((t) => (
             <li key={t.label} className="flex items-center gap-3">
               <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm ${
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm transition-all ${
                   t.done
-                    ? 'border-brand-cyan bg-brand-cyan/20 text-brand-cyan'
-                    : 'border-white/20 text-transparent'
+                    ? 'border-brand-accent bg-brand-accent/15 text-brand-accent'
+                    : 'border-white/15 text-transparent'
                 }`}
               >
                 ✓
               </span>
-              <span className={t.done ? 'text-white/45 line-through' : 'text-white/85'}>{t.label}</span>
+              <span className={t.done ? 'text-white/40 line-through' : 'text-white/80'}>{t.label}</span>
             </li>
           ))}
         </ul>

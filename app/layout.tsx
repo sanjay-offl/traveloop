@@ -1,27 +1,17 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { DM_Sans, Manrope, Playfair_Display, Space_Grotesk } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-body',
+  variable: '--font-inter',
 })
 
-const spaceGrotesk = Space_Grotesk({
+const poppins = Poppins({
   subsets: ['latin'],
-  variable: '--font-display',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  style: ['normal', 'italic'],
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  variable: '--font-ui',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-poppins',
 })
 
 export const metadata: Metadata = {
@@ -31,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const fontVars = `${manrope.variable} ${spaceGrotesk.variable} ${playfair.variable} ${dmSans.variable}`
+  const fontVars = `${inter.variable} ${poppins.variable}`
 
   return (
     <html lang="en" className={`${fontVars} scroll-smooth`}>
@@ -41,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
       </head>
-      <body className="bg-brand-black font-body text-white antialiased selection:bg-brand-cyan selection:text-brand-black">
+      <body className="bg-[#0B1220] font-sans text-white antialiased selection:bg-[#38BDF8] selection:text-[#0B1220]">
         {children}
       </body>
     </html>

@@ -8,10 +8,10 @@ export function Trips() {
   return (
     <section id="trips" className="mb-8 scroll-mt-24">
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <h2 className="font-display text-lg font-semibold text-white">Your trips</h2>
+        <h2 className="heading-gradient text-lg font-extrabold tracking-tight">Your trips</h2>
         <button
           type="button"
-          className="rounded-full border border-brand-cyan/40 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-brand-cyan transition-colors hover:bg-brand-cyan/10"
+          className="rounded-full border border-brand-accent/30 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-brand-accent transition-all hover:bg-brand-accent/10 hover:shadow-glow-sm font-accent"
         >
           New trip
         </button>
@@ -20,24 +20,24 @@ export function Trips() {
         {trips.map((trip) => (
           <div
             key={trip.name}
-            className="section-card flex flex-col gap-3 rounded-2xl border border-white/10 p-5 sm:flex-row sm:items-center sm:justify-between"
+            className="card-premium flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
           >
             <div>
               <p className="font-medium text-white">{trip.name}</p>
-              <p className="text-sm text-white/50">{trip.dates}</p>
-              <span className="mt-2 inline-block rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white/55">
+              <p className="text-sm text-white/45">{trip.dates}</p>
+              <span className="mt-2 inline-block rounded-full bg-white/[0.06] px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white/50 font-accent">
                 {trip.status}
               </span>
             </div>
             <div className="w-full sm:max-w-xs">
-              <div className="mb-1 flex justify-between text-xs text-white/45">
+              <div className="mb-1 flex justify-between text-xs text-white/40">
                 <span>Itinerary</span>
                 <span>{trip.progress}%</span>
               </div>
-              <div className="h-2 overflow-hidden rounded-full bg-white/10">
+              <div className="h-2 overflow-hidden rounded-full bg-white/[0.06]">
                 <div
-                  className="h-full rounded-full bg-brand-cyan transition-all"
-                  style={{ width: `${trip.progress}%` }}
+                  className="h-full rounded-full transition-all"
+                  style={{ width: `${trip.progress}%`, background: 'linear-gradient(90deg, #2563EB, #38BDF8)' }}
                 />
               </div>
             </div>
