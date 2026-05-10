@@ -1,29 +1,46 @@
 const tasks = [
-  { label: 'Passport valid 6+ months', done: true },
-  { label: 'Travel insurance quote', done: true },
-  { label: 'eSIM or pocket Wi‑Fi', done: false },
-  { label: 'ATM notify bank', done: false },
-  { label: 'Download offline maps', done: false },
+  { label: 'Passport & visas', done: true },
+  { label: 'Adaptor & chargers', done: true },
+  { label: 'Layered clothing', done: true },
+  { label: 'Medications & first aid', done: false },
+  { label: 'Copies of bookings (offline)', done: false },
+  { label: 'Snacks & water bottle', done: false },
 ] as const
 
 export function Checklist() {
+  const packed = tasks.filter((t) => t.done).length
+  const total = tasks.length
+  const remaining = total - packed
+  const pct = Math.round((packed / total) * 100)
+
   return (
-    <section id="checklist" className="mb-8 scroll-mt-24">
-      <h2 className="mb-4 font-display text-lg font-semibold text-white">Trip checklist</h2>
-      <div className="section-card rounded-2xl border border-white/10 p-5">
-        <ul className="space-y-3">
+    <section id="checklist" className="scroll-mt-24">
+      <h3 className="mb-4 text-base font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
+        Packing checklist
+      </h3>
+      <div className="card p-5">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <p className="text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+              {packed}/{total}
+            </p>
+            <p className="text-xs" style={{ color: 'var(--muted)' }}>
+              items packed · {remaining} remaining
+            </p>
+          </div>
+          <span className="badge badge-cyan">{pct}% ready</span>
+        </div>
+        <div className="progress mb-5">
+          <div className="progress-fill" style={{ width: `${pct}%` }} />
+        </div>
+        <ul className="space-y-2">
           {tasks.map((t) => (
-            <li key={t.label} className="flex items-center gap-3">
-              <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm ${
-                  t.done
-                    ? 'border-brand-cyan bg-brand-cyan/20 text-brand-cyan'
-                    : 'border-white/20 text-transparent'
-                }`}
-              >
-                ✓
-              </span>
-              <span className={t.done ? 'text-white/45 line-through' : 'text-white/85'}>{t.label}</span>
+            <li
+              key={t.label}
+              className={`check-item ${t.done ? 'done' : ''}`}
+            >
+              <span className={`checkbox ${t.done ? 'checked' : ''}`}>{t.done ? '✓' : ''}</span>
+              <span className={`text-sm ${t.done ? 'text-white/50 line-through' : 'text-white/90'}`}>{t.label}</span>
             </li>
           ))}
         </ul>

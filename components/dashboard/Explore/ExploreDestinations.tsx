@@ -12,11 +12,13 @@ const tagColors = {
   Cultural:  { text: '#C084FC', bg: 'rgba(192,132,252,0.12)' },
   Adventure: { text: '#86EFAC', bg: 'rgba(134,239,172,0.12)' },
   Romantic:  { text: '#F87171', bg: 'rgba(248,113,113,0.12)' },
-}
+} as const
 
-export default function ExploreDestinations() {
+type Tag = keyof typeof tagColors
+
+export default function Explore() {
   return (
-    <div className="card p-6">
+    <div id="explore" className="card scroll-mt-24 p-6">
       <div className="flex items-center justify-between mb-5">
         <div>
           <h3 className="text-base font-medium text-white" style={{ fontFamily: 'Fraunces, serif' }}>Explore Destinations</h3>
@@ -27,7 +29,7 @@ export default function ExploreDestinations() {
 
       <div className="grid grid-cols-2 gap-3">
         {destinations.map((dest) => {
-          const tc = tagColors[dest.tag]
+          const tc = tagColors[dest.tag as Tag]
           return (
             <div
               key={dest.name}

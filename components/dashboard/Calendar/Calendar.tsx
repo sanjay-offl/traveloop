@@ -19,13 +19,15 @@ const miniCalNums = [
 ]
 const tripDays = [14,15,16,17,18,19,20,21,22,23,24]
 
-export default function TravelCalendar() {
+export default function Calendar() {
   return (
-    <div className="card p-6">
+    <div id="calendar" className="card scroll-mt-24 p-6">
       <div className="flex items-center justify-between mb-5">
         <div>
           <h3 className="text-base font-medium text-white" style={{ fontFamily: 'Fraunces, serif' }}>Travel Calendar</h3>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>June 2025 — Rome trip</p>
+          <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+            Upcoming dates · activities timeline · reminders
+          </p>
         </div>
         <div className="flex items-center gap-1">
           <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/5" style={{ color: 'var(--muted)' }}>‹</button>
