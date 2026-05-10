@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
       
       
 
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-[#F5F5F5] dark:bg-[#050505] backdrop-blur-xl px-4 py-4 md:px-10">
+      <header className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-[#F1F1F1] dark:bg-[#050505] backdrop-blur-xl px-4 py-4 md:px-10">
         <Link href="/" className="font-sans text-2xl font-bold tracking-tight transition-opacity hover:opacity-80 md:text-3xl">
           <span className="text-zinc-900 dark:text-zinc-100">Traveloop</span>
         </Link>
@@ -49,27 +49,27 @@ const LoginPage: React.FC = () => {
                 />
               </div>
               <h1 className="text-zinc-900 dark:text-zinc-100 mb-2 text-3xl font-extrabold tracking-tight">Welcome Back</h1>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 text-center">Log in to your dashboard to manage your upcoming adventures.</p>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 text-center">Log in to your dashboard to manage your upcoming adventures.</p>
             </div>
 
             {/* Form Fields */}
             <form className="space-y-6" onSubmit={handleLogin}>
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-white/80 block" htmlFor="username">Username</label>
+                <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block" htmlFor="username">Username</label>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 group-focus-within:text-blue-600 dark:text-blue-400 transition-colors">person</span>
-                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm" id="username" placeholder="Enter your username" type="text" />
+                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm text-zinc-900 dark:text-zinc-100" id="username" placeholder="Enter your username" type="text" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-white/80 block" htmlFor="password">Password</label>
+                  <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block" htmlFor="password">Password</label>
                   <a className="text-xs text-blue-600 dark:text-blue-400 hover:underline" href="#">Forgot password?</a>
                 </div>
                 <div className="relative group">
                   <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 group-focus-within:text-blue-600 dark:text-blue-400 transition-colors">lock</span>
-                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm" id="password" placeholder="Enter your password" type={showPassword ? "text" : "password"} />
+                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm text-zinc-900 dark:text-zinc-100" id="password" placeholder="Enter your password" type={showPassword ? "text" : "password"} />
                   <button
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 hover:text-blue-600 dark:text-blue-400 transition-colors"
                     onClick={() => setShowPassword(!showPassword)}
@@ -82,14 +82,14 @@ const LoginPage: React.FC = () => {
 
               <button
                 type="submit"
-                className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform w-full py-3.5 text-base font-bold"
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl hover:scale-105 transition-all w-full py-3.5 text-base font-bold"
               >
                 Sign In
               </button>
             </form>
 
             <div className="mt-8 border-t border-black/5 dark:border-white/10 pt-6 text-center">
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
                 Don&apos;t have an account?{' '}
                 <Link href="/register" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
                   Create one

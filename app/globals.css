@@ -56,11 +56,11 @@
 
 /* ─── Design System Variables ─── */
 :root {
-  --bg: #F5F5F5;
+  --bg: #F1F1F1;
   --text: #111111;
 
   /* Light Theme Defaults */
-  --bg-base: #F5F5F5;
+  --bg-base: #F1F1F1;
   --bg-soft: #EAEAEA;
   --bg-surface: #EAEAEA;
   --bg-card: #FFFFFF;
@@ -114,7 +114,14 @@ a { color: inherit; text-decoration: none; }
   border-radius: 24px;
   border: 1px solid var(--border-subtle);
   background: var(--bg-card);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+}
+
+.card-premium {
+  border-radius: 24px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
 }
 
 .page-shell {

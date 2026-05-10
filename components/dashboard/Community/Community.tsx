@@ -17,9 +17,9 @@ export function Community() {
           >
             <div>
               <p className="font-medium text-zinc-900 dark:text-zinc-100">{thread.title}</p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400">by {thread.author}</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">by {thread.author}</p>
             </div>
-            <span className="shrink-0 rounded-full bg-white/[0.06] px-2.5 py-1 text-xs text-zinc-500 dark:text-zinc-400 font-accent">
+            <span className="shrink-0 rounded-full bg-white/[0.06] px-2.5 py-1 text-xs text-zinc-600 dark:text-zinc-400 font-accent">
               {thread.replies} replies
             </span>
           </button>

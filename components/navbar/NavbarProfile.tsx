@@ -35,7 +35,7 @@ export function NavbarProfile() {
         </span>
         <span className="hidden min-w-0 sm:block">
           <span className="block truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">Jordan Lee</span>
-          <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">Traveler</span>
+          <span className="block truncate text-xs text-zinc-600 dark:text-zinc-400">Traveler</span>
         </span>
         <span
           className={`material-symbols-outlined shrink-0 text-lg text-zinc-400 dark:text-zinc-500 transition-transform duration-200 sm:text-xl ${open ? 'rotate-180' : ''}`}
@@ -53,7 +53,7 @@ export function NavbarProfile() {
           <Link
             role="menuitem"
             href="/login"
-            className="block px-4 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
+            className="block px-4 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
             onClick={() => setOpen(false)}
           >
             Account &amp; settings
@@ -61,7 +61,7 @@ export function NavbarProfile() {
           <Link
             role="menuitem"
             href="#destinations"
-            className="block px-4 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
+            className="block px-4 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
             onClick={() => setOpen(false)}
           >
             Saved trips

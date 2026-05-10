@@ -32,13 +32,13 @@ export function Trips() {
             
             <div className="p-5 flex flex-col flex-1">
               <p className="font-bold text-zinc-900 dark:text-zinc-100 text-lg mb-1">{trip.name}</p>
-              <div className="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 mb-6">
+              <div className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400 mb-6">
                 <span className="material-symbols-outlined text-sm">calendar_month</span>
                 {trip.dates}
               </div>
               
               <div className="mt-auto">
-                <div className="mb-2 flex justify-between text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                <div className="mb-2 flex justify-between text-xs font-medium text-zinc-600 dark:text-zinc-400">
                   <span>Itinerary Progress</span>
                   <span className="text-blue-600 dark:text-blue-400">{trip.progress}%</span>
                 </div>

@@ -23,7 +23,7 @@ export function Checklist() {
               >
                 ✓
               </span>
-              <span className={t.done ? 'text-zinc-500 dark:text-zinc-400 line-through' : 'text-zinc-500 dark:text-zinc-400'}>{t.label}</span>
+              <span className={t.done ? 'text-zinc-600 dark:text-zinc-400 line-through' : 'text-zinc-600 dark:text-zinc-400'}>{t.label}</span>
             </li>
           ))}
         </ul>

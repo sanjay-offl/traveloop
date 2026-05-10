@@ -9,7 +9,7 @@ type DashboardHeaderProps = {
 
 export function DashboardHeader({ onOpenNav }: DashboardHeaderProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-black/5 dark:border-white/10 bg-white/80 dark:bg-[#111111]/80 px-4 py-3 backdrop-blur-xl sm:px-6">
+    <header className="sticky top-0 z-20 border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#111111]/90 px-4 py-3 backdrop-blur-xl sm:px-6">
       <div className="mx-auto flex max-w-6xl items-center gap-4">
         <button
           type="button"
@@ -33,7 +33,7 @@ export function DashboardHeader({ onOpenNav }: DashboardHeaderProps) {
           <ThemeToggle />
           <Link
             href="/dashboard#notifications"
-            className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-black/5 dark:border-white/10 text-zinc-500 dark:text-zinc-400 transition-all hover:border-blue-600/25 dark:hover:border-blue-400/25 hover:text-blue-600 dark:text-blue-400 hover:shadow-glow-sm"
+            className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-black/5 dark:border-white/10 text-zinc-600 dark:text-zinc-400 transition-all hover:border-blue-600/25 dark:hover:border-blue-400/25 hover:text-blue-600 dark:text-blue-400 hover:shadow-glow-sm"
             aria-label="Notifications"
           >
             <span className="material-symbols-outlined text-[22px]">notifications</span>

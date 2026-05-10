@@ -29,7 +29,7 @@ export default function InspirationSection() {
               New Way To<br />Experience<br />The World
             </h2>
             <blockquote className="mb-10 border-l-2 border-blue-600 dark:border-blue-500 pl-6">
-              <p className="text-sm italic leading-relaxed text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm italic leading-relaxed text-zinc-600 dark:text-zinc-400">
                 &ldquo;The world is a book, and those who do not travel read only one page. Every journey is a story waiting to be written — let yours begin with Traveloop.&rdquo;
               </p>
               <footer className="mt-3 text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-accent">— Traveloop Community</footer>

@@ -30,7 +30,7 @@ export default function CTASection() {
           Today
         </h2>
 
-        <p className="mx-auto mb-12 max-w-xl font-sans text-base leading-relaxed text-zinc-500 dark:text-zinc-400">
+        <p className="mx-auto mb-12 max-w-xl font-sans text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
           Join 50,000+ travelers who use Traveloop to plan smarter, travel better, and experience more. Free forever, no
           credit card required.
         </p>
@@ -60,7 +60,7 @@ export default function CTASection() {
           ].map((badge) => (
             <div key={badge.text} className="flex items-center gap-2">
               <span className="text-lg">{badge.icon}</span>
-              <span className="font-accent text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">{badge.text}</span>
+              <span className="font-accent text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400">{badge.text}</span>
             </div>
           ))}
         </div>

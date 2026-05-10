@@ -19,9 +19,9 @@ export function Stats() {
               <span className="material-symbols-outlined text-2xl">{item.icon}</span>
             </span>
             <div>
-              <p className="text-xs uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-accent">{item.label}</p>
+              <p className="text-xs uppercase tracking-wider text-zinc-600 dark:text-zinc-400 font-accent">{item.label}</p>
               <p className="mt-1 font-sans text-2xl font-bold text-zinc-900 dark:text-zinc-100">{item.value}</p>
-              <p className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">{item.delta}</p>
+              <p className="mt-0.5 text-xs text-zinc-600 dark:text-zinc-400">{item.delta}</p>
             </div>
           </div>
         ))}

@@ -25,11 +25,11 @@ export function Calendar() {
       <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Travel Calendar</h2>
       <div className="card-premium p-6">
         <div className="flex items-center justify-between mb-5">
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 font-accent">June 2025 — Rome trip</p>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400 font-accent">June 2025 — Rome trip</p>
           <div className="flex items-center gap-1">
-            <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">‹</button>
+            <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-zinc-600 dark:text-zinc-400">‹</button>
             <span className="text-xs px-2 text-zinc-900 dark:text-zinc-100">Jun</span>
-            <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">›</button>
+            <button className="w-7 h-7 rounded-lg flex items-center justify-center text-xs transition-colors hover:bg-white/[0.05] text-zinc-600 dark:text-zinc-400">›</button>
           </div>
         </div>
 
@@ -37,7 +37,7 @@ export function Calendar() {
         <div className="mb-5">
           <div className="grid grid-cols-7 mb-1">
             {miniCalDays.map((d, i) => (
-              <div key={i} className="text-center text-zinc-500 dark:text-zinc-400 py-1" style={{ fontSize: 10 }}>{d}</div>
+              <div key={i} className="text-center text-zinc-600 dark:text-zinc-400 py-1" style={{ fontSize: 10 }}>{d}</div>
             ))}
           </div>
           {miniCalNums.map((week, wi) => (
@@ -72,7 +72,7 @@ export function Calendar() {
 
         {/* Timeline */}
         <div className="relative">
-          <div className="text-xs mb-3 uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-accent" style={{ fontSize: 10 }}>Activities timeline</div>
+          <div className="text-xs mb-3 uppercase tracking-widest text-zinc-600 dark:text-zinc-400 font-accent" style={{ fontSize: 10 }}>Activities timeline</div>
           <div className="relative pl-4">
             <div className="absolute left-0 top-0 bottom-0 w-px" style={{ background: 'linear-gradient(to bottom, #38BDF8, transparent)', opacity: 0.25 }} />
             <div className="flex flex-col gap-3">
@@ -83,7 +83,7 @@ export function Calendar() {
                     <span className="text-sm">{ev.icon}</span>
                     <div className="flex-1 min-w-0">
                       <div className="text-xs font-medium text-zinc-900 dark:text-zinc-100">{ev.label}</div>
-                      <div className="text-xs text-zinc-500 dark:text-zinc-400">{ev.date}</div>
+                      <div className="text-xs text-zinc-600 dark:text-zinc-400">{ev.date}</div>
                     </div>
                   </div>
                 </div>

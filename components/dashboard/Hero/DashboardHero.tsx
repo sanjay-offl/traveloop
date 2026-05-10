@@ -10,7 +10,7 @@ export function DashboardHero() {
           <h1 className="text-zinc-900 dark:text-zinc-100 font-sans text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
             Your trips, budget, and calendar in one calm place.
           </h1>
-          <p className="text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-base">
+          <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
             Plan multi-city routes, track spend, and stay on top of tasks without switching tabs.
           </p>
         </div>

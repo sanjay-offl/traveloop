@@ -24,7 +24,7 @@ export function Notifications() {
               )}
               <div>
                 <p className="font-medium text-zinc-900 dark:text-zinc-100">{a.title}</p>
-                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{a.body}</p>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{a.body}</p>
               </div>
             </div>
           </div>

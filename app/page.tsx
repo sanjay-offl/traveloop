@@ -16,7 +16,7 @@ export default function AuthPage() {
               Traveloop
             </h1>
             <p className="text-blue-600 dark:text-blue-400 text-lg font-accent font-medium">Smart Travel Planning</p>
-            <p className="text-zinc-500 dark:text-zinc-400 mt-4 text-sm leading-relaxed">
+            <p className="text-zinc-600 dark:text-zinc-400 mt-4 text-sm leading-relaxed">
               Organize trips, manage destinations, and share itineraries
             </p>
           </div>
@@ -24,19 +24,19 @@ export default function AuthPage() {
           <div className="space-y-4">
             <Link
               href="/login"
-              className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform w-full block text-center py-4 text-base"
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl hover:scale-105 transition-all w-full block text-center py-4 text-base font-semibold"
             >
               Log In
             </Link>
             <Link
               href="/register"
-              className="btn-glass w-full block text-center py-4 text-base"
+              className="bg-black text-white dark:bg-white dark:text-black border border-black/5 dark:border-white/10 rounded-xl hover:scale-105 transition-all w-full block text-center py-4 text-base font-semibold"
             >
               Create Account
             </Link>
           </div>
 
-          <div className="mt-8 text-center text-zinc-500 dark:text-zinc-400 text-xs">
+          <div className="mt-8 text-center text-zinc-600 dark:text-zinc-400 text-xs">
             <p>First time here? Start by creating an account to begin planning your adventures.</p>
           </div>
         </div>

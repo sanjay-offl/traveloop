@@ -10,7 +10,7 @@ export function ProjectCard({ title, description }: ProjectCardProps) {
         <div className="w-3 h-3 rounded-full bg-blue-600 dark:bg-blue-500" />
       </div>
       <h3 className="mb-2 mt-0 text-lg font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">{title}</h3>
-      <p className="m-0 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">{description}</p>
+      <p className="m-0 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">{description}</p>
     </article>
   );
 }

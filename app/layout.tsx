@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
       </head>
-      <body className="bg-[#F5F5F5] dark:bg-[#050505] text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-blue-600 dark:selection:bg-blue-500/20 selection:text-white dark:selection:text-white transition-colors duration-300">
+      <body className="bg-[#F1F1F1] dark:bg-[#050505] text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-blue-600 dark:selection:bg-blue-500/20 selection:text-white dark:selection:text-white transition-colors duration-300">
         <ThemeProvider>
           {children}
         </ThemeProvider>

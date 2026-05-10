@@ -62,7 +62,7 @@ export default function CommunitySection() {
           </div>
           <a
             href="/community"
-            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
+            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
           >
             <span className="uppercase tracking-widest text-xs">See all trips</span>
             <div className="w-8 h-8 rounded-full border border-black/5 dark:border-white/10 group-hover:border-accent-primary flex items-center justify-center transition-all group-hover:shadow-glow-sm">
@@ -93,7 +93,7 @@ export default function CommunitySection() {
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <img src={trip.user.avatar} alt={trip.user.name} className="w-8 h-8 rounded-full object-cover" />
-                  <span className="text-xs text-zinc-500 dark:text-zinc-400">{trip.user.name}</span>
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">{trip.user.name}</span>
                 </div>
 
                 <h3 className="mb-3 text-lg font-bold text-zinc-900 dark:text-zinc-100">{trip.destination}</h3>

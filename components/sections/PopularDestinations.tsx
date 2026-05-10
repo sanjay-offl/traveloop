@@ -60,7 +60,7 @@ export default function PopularDestinations() {
           </div>
           <a
             href="/explore"
-            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
+            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
           >
             <span className="uppercase tracking-widest text-xs">View all</span>
             <div className="w-8 h-8 rounded-full border border-black/5 dark:border-white/10 group-hover:border-accent-primary flex items-center justify-center transition-all group-hover:shadow-glow-sm">
@@ -88,13 +88,13 @@ export default function PopularDestinations() {
                 <div className="mb-2 flex items-start justify-between">
                   <div>
                     <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{dest.name}</h3>
-                    <p className="mt-0.5 text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">{dest.country}</p>
+                    <p className="mt-0.5 text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400">{dest.country}</p>
                   </div>
                   <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">★ {dest.rating}</span>
                 </div>
 
                 <div className="mt-4 flex items-center justify-between border-t border-black/5 dark:border-white/10 pt-4">
-                  <span className="text-xs text-zinc-500 dark:text-zinc-400">{dest.duration}</span>
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">{dest.duration}</span>
                   <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                     from <span className="text-blue-600 dark:text-blue-400">{dest.price}</span>
                   </span>

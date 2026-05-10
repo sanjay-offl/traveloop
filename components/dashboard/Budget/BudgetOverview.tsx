@@ -54,7 +54,7 @@ export function Budget() {
       <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Budget Overview</h2>
       <div className="card-premium p-6">
         <div className="flex items-center justify-between mb-8">
-          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">All trips combined</p>
+          <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">All trips combined</p>
           <span className="rounded-full bg-blue-600/10 px-3 py-1 text-xs font-bold text-blue-600 dark:text-blue-400 border border-blue-600/20">
             {pctUsed}% used
           </span>
@@ -66,12 +66,12 @@ export function Budget() {
             <DonutChart />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span className="text-lg font-bold text-zinc-900 dark:text-zinc-100">${(total / 1000).toFixed(1)}k</span>
-              <span className="text-xs text-zinc-500 dark:text-zinc-400">spent</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400">spent</span>
             </div>
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="flex justify-between text-sm mb-2 text-zinc-500 dark:text-zinc-400">
+            <div className="flex justify-between text-sm mb-2 text-zinc-600 dark:text-zinc-400">
               <span>Spent</span>
               <span className="text-zinc-900 dark:text-zinc-100 font-bold">${total.toLocaleString()}</span>
             </div>
@@ -79,7 +79,7 @@ export function Budget() {
               <div className="h-full rounded-full transition-all duration-1000 bg-blue-600 dark:bg-blue-500" style={{ width: `${pctUsed}%` }} />
             </div>
 
-            <div className="flex justify-between text-sm mb-2 text-zinc-500 dark:text-zinc-400">
+            <div className="flex justify-between text-sm mb-2 text-zinc-600 dark:text-zinc-400">
               <span>Remaining</span>
               <span className="font-bold text-zinc-900 dark:text-zinc-100">${(totalBudget - total).toLocaleString()}</span>
             </div>
@@ -87,7 +87,7 @@ export function Budget() {
               <div className="h-full rounded-full transition-all duration-1000 bg-zinc-300 dark:bg-zinc-700" style={{ width: `${100 - pctUsed}%` }} />
             </div>
 
-            <div className="flex justify-between text-sm mt-4 pt-4 border-t border-black/5 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
+            <div className="flex justify-between text-sm mt-4 pt-4 border-t border-black/5 dark:border-white/10 text-zinc-600 dark:text-zinc-400">
               <span>Total budget</span>
               <span className="text-zinc-900 dark:text-zinc-100 font-bold">${totalBudget.toLocaleString()}</span>
             </div>
@@ -99,7 +99,7 @@ export function Budget() {
           {categories.map((cat) => (
             <div key={cat.name} className="flex items-center gap-4">
               <div className="w-3 h-3 rounded-full flex-shrink-0 shadow-sm" style={{ background: cat.color }} />
-              <span className="text-sm font-medium flex-1 text-zinc-500 dark:text-zinc-400">{cat.name}</span>
+              <span className="text-sm font-medium flex-1 text-zinc-600 dark:text-zinc-400">{cat.name}</span>
               <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 w-16 text-right">${cat.amount.toLocaleString()}</span>
             </div>
           ))}
@@ -107,7 +107,7 @@ export function Budget() {
 
         {/* Daily avg */}
         <div className="mt-6 pt-5 flex items-center justify-between border-t border-black/5 dark:border-white/10">
-          <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Daily avg spending</span>
+          <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">Daily avg spending</span>
           <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">$121 / day</span>
         </div>
       </div>
