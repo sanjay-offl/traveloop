@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export function Hero() {
   return (
     <section className="section-card relative mb-6 grid gap-8 overflow-hidden px-6 py-16 sm:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-14 lg:py-20">
@@ -22,12 +20,6 @@ export function Hero() {
           >
             Explore trips
           </a>
-          <Link
-            href="/dashboard"
-            className="rounded-full border border-white/15 px-5 py-3 font-semibold text-white/90 transition-colors duration-300 hover:border-white hover:text-white"
-          >
-            Open dashboard
-          </Link>
           <a
             href="#stories"
             className="btn-glass"

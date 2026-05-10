@@ -11,7 +11,6 @@ const tagColors: Record<string, { text: string; bg: string }> = {
   Trending: { text: '#38BDF8', bg: 'rgba(56,189,248,0.12)' },
   Cultural: { text: '#8B5CF6', bg: 'rgba(139,92,246,0.12)' },
   Adventure: { text: '#86EFAC', bg: 'rgba(134,239,172,0.12)' },
-<<<<<<< HEAD
   Romantic: { text: '#F87171', bg: 'rgba(248,113,113,0.12)' },
 }
 
@@ -23,23 +22,8 @@ export function Explore() {
         <div className="flex items-center justify-between mb-5">
           <p className="text-xs text-white/40 font-accent">Handpicked for you</p>
           <button className="btn-glass px-4 py-2 text-xs font-accent">Browse all</button>
-=======
-  Romantic:  { text: '#F87171', bg: 'rgba(248,113,113,0.12)' },
-} as const
-
-type Tag = keyof typeof tagColors
-
-export default function Explore() {
-  return (
-    <div id="explore" className="card scroll-mt-24 p-6">
-      <div className="flex items-center justify-between mb-5">
-        <div>
-          <h3 className="text-base font-medium text-white" style={{ fontFamily: 'Fraunces, serif' }}>Explore Destinations</h3>
-          <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>Handpicked for you</p>
->>>>>>> origin/main
         </div>
 
-<<<<<<< HEAD
         <div className="grid grid-cols-2 gap-3">
           {destinations.map((dest) => {
             const tc = tagColors[dest.tag]
@@ -55,24 +39,6 @@ export default function Explore() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,18,32,0.9) 0%, transparent 60%)' }} />
-=======
-      <div className="grid grid-cols-2 gap-3">
-        {destinations.map((dest) => {
-          const tc = tagColors[dest.tag as Tag]
-          return (
-            <div
-              key={dest.name}
-              className="group relative rounded-xl overflow-hidden cursor-pointer"
-              style={{ height: 160 }}
-            >
-              <img
-                src={dest.image}
-                alt={dest.name}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(1,3,2,0.9) 0%, transparent 60%)' }} />
->>>>>>> origin/main
 
                 <div className="absolute top-3 left-3">
                   <span
