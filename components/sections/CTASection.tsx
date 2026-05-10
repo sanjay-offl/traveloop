@@ -38,7 +38,7 @@ export default function CTASection() {
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="/register"
-            className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform px-10 py-5 text-sm font-semibold uppercase tracking-widest group"
+            className="bg-zinc-900 dark:black text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform px-10 py-5 text-sm font-semibold uppercase tracking-widest group"
           >
             Create Free Account
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

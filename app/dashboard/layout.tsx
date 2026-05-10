@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 
 import { DashboardShell } from '../../components/dashboard/DashboardShell'
+import GeminiChatbot from '../../components/chatbot/GeminiChatbot'
 
 export const metadata: Metadata = {
   title: 'Dashboard — Traveloop',
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 }
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  return <DashboardShell>{children}</DashboardShell>
+  return (
+    <DashboardShell>
+      {children}
+      <GeminiChatbot />
+    </DashboardShell>
+  )
 }

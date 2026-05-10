@@ -1,4 +1,10 @@
+ 'use client'
+
+import { useAuthProfile } from '../../../hooks/useAuthProfile'
+
 export function DashboardProfile() {
+  const { displayName, email, initials } = useAuthProfile()
+
   return (
     <section id="profile" className="scroll-mt-24">
       <h3 className="mb-4 text-base font-medium text-zinc-900 dark:text-zinc-100" style={{ fontFamily: 'var(--font-display)' }}>
@@ -9,12 +15,12 @@ export function DashboardProfile() {
           className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-lg font-bold"
           style={{ background: 'var(--cyan)', color: '#010302' }}
         >
-          AS
+          {initials}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Arjun Sharma</p>
+          <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{displayName}</p>
           <p className="text-sm" style={{ color: 'var(--muted)' }}>
-            arjun@example.com · Pro member
+            {email || 'No email available'} · Pro member
           </p>
           <p className="mt-2 text-xs" style={{ color: 'var(--muted)' }}>
             Edit avatar, home airport, and travel preferences in the full profile experience (coming next).

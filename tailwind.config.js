@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,17 +10,17 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          black: '#0B1220',
-          surface: '#111827',
-          card: 'rgba(17,24,39,0.70)',
-          primary: '#2563EB',
-          accent: '#38BDF8',
+          black: '#010302',
+          surface: '#010302',
+          card: 'rgba(1,3,2,0.70)',
+          primary: '#52E3E8',
+          accent: '#52E3E8',
           purple: '#8B5CF6',
-          'accent-dim': 'rgba(56,189,248,0.15)',
+          'accent-dim': 'rgba(82,227,232,0.15)',
           'purple-dim': 'rgba(139,92,246,0.12)',
           // Legacy aliases for compatibility
-          cyan: '#38BDF8',
-          'cyan-dim': 'rgba(56,189,248,0.15)',
+          cyan: '#52E3E8',
+          'cyan-dim': 'rgba(82,227,232,0.15)',
         },
       },
       fontFamily: {
@@ -32,11 +33,11 @@ module.exports = {
         '4xl': '2rem',
       },
       boxShadow: {
-        'glow-sm': '0 0 15px rgba(56,189,248,0.15)',
-        'glow-md': '0 0 30px rgba(56,189,248,0.20)',
-        'glow-lg': '0 0 60px rgba(56,189,248,0.25)',
+        'glow-sm': '0 0 15px rgba(82,227,232,0.15)',
+        'glow-md': '0 0 30px rgba(82,227,232,0.20)',
+        'glow-lg': '0 0 60px rgba(82,227,232,0.25)',
         'glow-purple': '0 0 30px rgba(139,92,246,0.15)',
-        'card-hover': '0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(56,189,248,0.10)',
+        'card-hover': '0 25px 50px -12px rgba(0,0,0,0.5), 0 0 30px rgba(82,227,232,0.10)',
       },
       animation: {
         'fade-up': 'fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
@@ -71,8 +72,8 @@ module.exports = {
           '50%': { transform: 'translateY(-12px)' },
         },
         glowPulse: {
-          '0%, 100%': { textShadow: '0 0 10px rgba(56,189,248,0.4)' },
-          '50%': { textShadow: '0 0 30px rgba(56,189,248,0.9), 0 0 60px rgba(56,189,248,0.4)' },
+          '0%, 100%': { textShadow: '0 0 10px rgba(82,227,232,0.4)' },
+          '50%': { textShadow: '0 0 30px rgba(82,227,232,0.9), 0 0 60px rgba(82,227,232,0.4)' },
         },
         glowBreathe: {
           '0%, 100%': { opacity: '0.4' },

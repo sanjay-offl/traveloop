@@ -1,11 +1,33 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+
+import { useAuthProfile } from '../../hooks/useAuthProfile'
+import { createClient } from '../../utils/supabase/client'
 
 export function NavbarProfile() {
   const [open, setOpen] = useState(false)
+  const [signingOut, setSigningOut] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+  const { displayName, initials, isAuthenticated } = useAuthProfile()
+
+  const roleLabel = isAuthenticated ? 'Traveler' : 'Guest'
+
+  async function handleSignOut() {
+    if (!isAuthenticated || signingOut) return
+    setSigningOut(true)
+
+    const supabase = createClient()
+    await supabase.auth.signOut()
+
+    setOpen(false)
+    setSigningOut(false)
+    router.push('/login')
+    router.refresh()
+  }
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
@@ -31,11 +53,11 @@ export function NavbarProfile() {
           style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}
           aria-hidden
         >
-          JL
+          {initials}
         </span>
         <span className="hidden min-w-0 sm:block">
-          <span className="block truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">Jordan Lee</span>
-          <span className="block truncate text-xs text-zinc-600 dark:text-zinc-400">Traveler</span>
+          <span className="block truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">{displayName}</span>
+          <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">{roleLabel}</span>
         </span>
         <span
           className={`material-symbols-outlined shrink-0 text-lg text-zinc-400 dark:text-zinc-500 transition-transform duration-200 sm:text-xl ${open ? 'rotate-180' : ''}`}
@@ -52,8 +74,16 @@ export function NavbarProfile() {
         >
           <Link
             role="menuitem"
+            href="/dashboard"
+            className="block px-4 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
+            onClick={() => setOpen(false)}
+          >
+            Dashboard
+          </Link>
+          <Link
+            role="menuitem"
             href="/login"
-            className="block px-4 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
+            className="block px-4 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
             onClick={() => setOpen(false)}
           >
             Account &amp; settings
@@ -61,7 +91,7 @@ export function NavbarProfile() {
           <Link
             role="menuitem"
             href="#destinations"
-            className="block px-4 py-2.5 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
+            className="block px-4 py-2.5 text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-blue-600 dark:text-blue-400"
             onClick={() => setOpen(false)}
           >
             Saved trips
@@ -73,8 +103,19 @@ export function NavbarProfile() {
             className="block px-4 py-2.5 text-sm text-zinc-400 dark:text-zinc-500 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-zinc-900 dark:text-zinc-100"
             onClick={() => setOpen(false)}
           >
-            Sign out
+            {isAuthenticated ? 'Home' : 'Sign in'}
           </Link>
+          {isAuthenticated ? (
+            <button
+              type="button"
+              role="menuitem"
+              onClick={handleSignOut}
+              disabled={signingOut}
+              className="block w-full px-4 py-2.5 text-left text-sm text-zinc-400 dark:text-zinc-500 transition-colors hover:bg-black/5 dark:hover:bg-white/5 hover:text-zinc-900 dark:text-zinc-100 disabled:opacity-60"
+            >
+              {signingOut ? 'Signing out...' : 'Sign out'}
+            </button>
+          ) : null}
         </div>
       ) : null}
     </div>

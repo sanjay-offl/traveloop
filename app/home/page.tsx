@@ -9,6 +9,7 @@ import CommunitySection from '../../components/sections/CommunitySection'
 import CTASection from '../../components/sections/CTASection'
 import { Footer } from '../../components/footer/Footer'
 import ClientEffects from '../../components/ClientEffects'
+import GeminiChatbot from '../../components/chatbot/GeminiChatbot'
 
 export default function HomePage() {
   return (
@@ -42,6 +43,7 @@ export default function HomePage() {
       <CommunitySection />
       <CTASection />
       <Footer />
+      <GeminiChatbot />
     </main>
   )
 }

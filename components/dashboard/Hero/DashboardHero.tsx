@@ -17,7 +17,7 @@ export function DashboardHero() {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/dashboard#trips"
-            className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform px-5 py-2.5 text-sm"
+            className="bg-zinc-900 dark:black text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform px-5 py-2.5 text-sm"
           >
             Continue planning
           </Link>

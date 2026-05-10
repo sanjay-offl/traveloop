@@ -4,13 +4,60 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { createClient } from '../../utils/supabase/client';
+
 const RegisterPage: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const router = useRouter();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/home');
+
+    if (!firstName.trim() || !email.trim() || !password.trim()) {
+      setError('First name, email, and password are required.');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    setMessage('');
+
+    const supabase = createClient();
+    const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
+
+    const { data, error: authError } = await supabase.auth.signUp({
+      email: email.trim(),
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          country: selectedCountry || null,
+        },
+      },
+    });
+
+    if (authError) {
+      setError(authError.message || 'Unable to create account. Please try again.');
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+
+    if (data.session) {
+      router.push('/dashboard');
+      router.refresh();
+      return;
+    }
+
+    setMessage('Account created. Please check your email to confirm your account before signing in.');
   };
 
   return (
@@ -19,12 +66,12 @@ const RegisterPage: React.FC = () => {
       
       
 
-      <header className="flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-[#F1F1F1] dark:bg-[#050505] backdrop-blur-xl px-4 py-4 md:px-10">
+      <header className="flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-[#F5F5F5] dark:bg-[#050505] backdrop-blur-xl px-4 py-4 md:px-10">
         <Link href="/" className="font-sans text-2xl font-bold tracking-tight transition-opacity hover:opacity-80 md:text-3xl">
           <span className="text-zinc-900 dark:text-zinc-100">Traveloop</span>
         </Link>
         <div className="flex items-center gap-4">
-          <span className="hidden text-xs text-zinc-600 dark:text-zinc-400 sm:inline md:text-sm">Already have an account?</span>
+          <span className="hidden text-xs text-zinc-500 dark:text-zinc-400 sm:inline md:text-sm">Already have an account?</span>
           <Link href="/login" className="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline font-accent">
             Log in
           </Link>
@@ -51,7 +98,7 @@ const RegisterPage: React.FC = () => {
             </div>
             <div className="mt-6 text-center">
               <h1 className="text-zinc-900 dark:text-zinc-100 text-2xl font-extrabold tracking-tight">Join the Adventure</h1>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">Complete your profile to start planning your next journey</p>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2">Complete your profile to start planning your next journey</p>
             </div>
           </div>
 
@@ -62,25 +109,49 @@ const RegisterPage: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-2" htmlFor="firstName">First Name</label>
-                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm" id="firstName" placeholder="John" type="text" />
+                  <input
+                    className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
+                    id="firstName"
+                    placeholder="John"
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    autoComplete="given-name"
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-2" htmlFor="lastName">Last Name</label>
-                  <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm" id="lastName" placeholder="Doe" type="text" />
+                  <input
+                    className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
+                    id="lastName"
+                    placeholder="Doe"
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    autoComplete="family-name"
+                  />
                 </div>
               </div>
 
               {/* Email */}
               <div>
                 <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-2" htmlFor="email">Email Address</label>
-                <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm" id="email" placeholder="john@example.com" type="email" />
+                <input
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
+                  id="email"
+                  placeholder="john@example.com"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                />
               </div>
 
               {/* Country Selection */}
               <div>
                 <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-2" htmlFor="country">Country</label>
                 <select 
-                  className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 transition-all backdrop-blur-sm"
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 transition-all backdrop-blur-sm"
                   id="country"
                   value={selectedCountry}
                   onChange={(e) => setSelectedCountry(e.target.value)}
@@ -97,13 +168,29 @@ const RegisterPage: React.FC = () => {
               {/* Password */}
               <div>
                 <label className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 block mb-2" htmlFor="password">Password</label>
-                <input className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-600/50 dark:focus:border-blue-400/50 focus:ring-1 focus:ring-blue-600/30 dark:focus:ring-blue-400/30 placeholder-zinc-400 dark:placeholder-zinc-500 transition-all backdrop-blur-sm" id="password" placeholder="Create a strong password" type="password" />
+                <input
+                  className="w-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-accent-primary/50 focus:ring-1 focus:ring-accent-primary/30 placeholder-text-secondary/40 transition-all backdrop-blur-sm"
+                  id="password"
+                  placeholder="Create a strong password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="new-password"
+                />
               </div>
+
+              {error ? (
+                <p className="text-sm text-red-500">{error}</p>
+              ) : null}
+
+              {message ? (
+                <p className="text-sm text-emerald-600 dark:text-emerald-400">{message}</p>
+              ) : null}
 
               {/* Terms Checkbox */}
               <div className="flex items-start gap-3">
                 <input className="mt-1 accent-accent-primary" id="terms" type="checkbox" />
-                <label className="text-sm text-zinc-600 dark:text-zinc-400" htmlFor="terms">
+                <label className="text-sm text-zinc-500 dark:text-zinc-400" htmlFor="terms">
                   I agree to the <a className="text-blue-600 dark:text-blue-400 hover:underline" href="#">Terms of Service</a> and <a className="text-blue-600 dark:text-blue-400 hover:underline" href="#">Privacy Policy</a>
                 </label>
               </div>
@@ -111,13 +198,14 @@ const RegisterPage: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl hover:scale-105 transition-all w-full py-3.5 text-base font-bold"
+                disabled={loading}
+                className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform w-full py-3.5 text-base font-bold"
               >
-                Create Account
+                {loading ? 'Creating account...' : 'Create Account'}
               </button>
 
               <div className="border-t border-black/5 dark:border-white/10 pt-6 text-center">
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
                   Already have an account?{' '}
                   <Link href="/login" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
                     Sign in
