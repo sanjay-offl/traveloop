@@ -8,8 +8,8 @@ import Explore from '../../components/dashboard/Explore/ExploreDestinations'
 import { DashboardHero } from '../../components/dashboard/Hero/DashboardHero'
 import { Notifications } from '../../components/dashboard/Notifications/Notifications'
 import { DashboardProfile } from '../../components/dashboard/Profile/DashboardProfile'
-import Stats from '../../components/dashboard/Stats/Stats'
-import Trips from '../../components/dashboard/Trips/Trips'
+import { Stats } from '../../components/dashboard/Stats/Stats'
+import { Trips } from '../../components/dashboard/Trips/Trips'
 
 export default function DashboardPage() {
   return (
