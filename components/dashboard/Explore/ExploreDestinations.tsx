@@ -17,10 +17,10 @@ const tagColors: Record<string, { text: string; bg: string }> = {
 export function Explore() {
   return (
     <section id="explore" className="mb-8 scroll-mt-24">
-      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Explore Destinations</h2>
+      <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Explore Destinations</h2>
       <div className="card-premium p-6">
         <div className="flex items-center justify-between mb-5">
-          <p className="text-xs text-white/40 font-accent">Handpicked for you</p>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 font-accent">Handpicked for you</p>
           <button className="btn-glass px-4 py-2 text-xs font-accent">Browse all</button>
         </div>
 
@@ -52,12 +52,12 @@ export function Explore() {
                 <div className="absolute bottom-0 left-0 right-0 p-3">
                   <div className="flex items-end justify-between">
                     <div>
-                      <div className="text-sm font-medium text-white">{dest.name}</div>
-                      <div className="text-xs text-white/40">{dest.country}</div>
+                      <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">{dest.name}</div>
+                      <div className="text-xs text-zinc-500 dark:text-zinc-400">{dest.country}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-brand-accent">★ {dest.rating}</div>
-                      <div className="text-xs text-white font-medium">{dest.cost}</div>
+                      <div className="text-xs text-blue-600 dark:text-blue-400">★ {dest.rating}</div>
+                      <div className="text-xs text-zinc-900 dark:text-zinc-100 font-medium">{dest.cost}</div>
                     </div>
                   </div>
                 </div>

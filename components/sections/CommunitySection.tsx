@@ -36,10 +36,10 @@ const marqueeItems = [
 export default function CommunitySection() {
   return (
     <section className="py-28 overflow-hidden" id="community">
-      <div className="mb-20 py-4 border-y border-white/[0.05] overflow-hidden">
+      <div className="mb-20 py-4 border-y border-black/5 dark:border-white/10 overflow-hidden">
         <div className="marquee-track">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={`${item}-${i}`} className="flex-shrink-0 font-accent text-sm uppercase tracking-widest text-white/25">
+            <span key={`${item}-${i}`} className="flex-shrink-0 font-accent text-sm uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
               {item}
             </span>
           ))}
@@ -53,19 +53,19 @@ export default function CommunitySection() {
         >
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-brand-accent" />
-              <span className="font-accent text-xs uppercase tracking-widest text-brand-accent font-semibold">Community Picks</span>
+              <div className="h-px w-8 bg-blue-600 dark:bg-blue-500" />
+              <span className="font-accent text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Community Picks</span>
             </div>
-            <h2 className="heading-gradient text-5xl font-extrabold tracking-tight lg:text-6xl">
+            <h2 className="text-zinc-900 dark:text-zinc-100 text-5xl font-extrabold tracking-tight lg:text-6xl">
               Shared by<br />Fellow Explorers
             </h2>
           </div>
           <a
             href="/community"
-            className="group mt-8 flex items-center gap-3 font-accent text-sm text-white/40 transition-colors hover:text-brand-accent md:mt-0"
+            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
           >
             <span className="uppercase tracking-widest text-xs">See all trips</span>
-            <div className="w-8 h-8 rounded-full border border-white/15 group-hover:border-brand-accent flex items-center justify-center transition-all group-hover:shadow-glow-sm">
+            <div className="w-8 h-8 rounded-full border border-black/5 dark:border-white/10 group-hover:border-accent-primary flex items-center justify-center transition-all group-hover:shadow-glow-sm">
               <span className="text-xs">→</span>
             </div>
           </a>
@@ -81,8 +81,7 @@ export default function CommunitySection() {
               <div className="relative h-52 overflow-hidden">
                 <img src={trip.image} alt={trip.destination} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div
-                  className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-md"
-                  style={{ background: 'rgba(11,18,32,0.72)' }}
+                  className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full px-3 py-1.5 backdrop-blur-md bg-black/60 dark:bg-black/70"
                 >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="#38BDF8">
                     <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -94,19 +93,19 @@ export default function CommunitySection() {
               <div className="p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <img src={trip.user.avatar} alt={trip.user.name} className="w-8 h-8 rounded-full object-cover" />
-                  <span className="text-xs text-white/40">{trip.user.name}</span>
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400">{trip.user.name}</span>
                 </div>
 
-                <h3 className="mb-3 text-lg font-bold text-white">{trip.destination}</h3>
+                <h3 className="mb-3 text-lg font-bold text-zinc-900 dark:text-zinc-100">{trip.destination}</h3>
 
                 <div className="flex items-center gap-4">
-                  <span className="flex items-center gap-1.5 text-xs text-white/35">
+                  <span className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-500">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth="2">
                       <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {trip.duration}
                   </span>
-                  <span className="flex items-center gap-1.5 text-xs text-white/35">
+                  <span className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-500">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth="2">
                       <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                     </svg>

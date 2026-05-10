@@ -1,7 +1,7 @@
 export function DashboardProfile() {
   return (
     <section id="profile" className="scroll-mt-24">
-      <h3 className="mb-4 text-base font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
+      <h3 className="mb-4 text-base font-medium text-zinc-900 dark:text-zinc-100" style={{ fontFamily: 'var(--font-display)' }}>
         Profile
       </h3>
       <div className="card flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
@@ -12,7 +12,7 @@ export function DashboardProfile() {
           AS
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-lg font-medium text-white">Arjun Sharma</p>
+          <p className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Arjun Sharma</p>
           <p className="text-sm" style={{ color: 'var(--muted)' }}>
             arjun@example.com · Pro member
           </p>

@@ -1,12 +1,12 @@
 'use client'
 
 const categories = [
-  { name: 'Flights', amount: 1840, color: '#38BDF8', pct: 38 },
-  { name: 'Hotels', amount: 1200, color: '#8B5CF6', pct: 25 },
-  { name: 'Food & Dining', amount: 720, color: '#FCD34D', pct: 15 },
-  { name: 'Activities', amount: 560, color: '#86EFAC', pct: 12 },
-  { name: 'Transport', amount: 280, color: '#F87171', pct: 6 },
-  { name: 'Other', amount: 240, color: '#94A3B8', pct: 4 },
+  { name: 'Flights', amount: 1840, color: '#2563EB', pct: 38 },
+  { name: 'Hotels', amount: 1200, color: '#3B82F6', pct: 25 },
+  { name: 'Food & Dining', amount: 720, color: '#93C5FD', pct: 15 },
+  { name: 'Activities', amount: 560, color: '#525252', pct: 12 },
+  { name: 'Transport', amount: 280, color: '#A1A1AA', pct: 6 },
+  { name: 'Other', amount: 240, color: '#E4E4E7', pct: 4 },
 ]
 
 const total = 4840
@@ -51,11 +51,11 @@ export function Budget() {
 
   return (
     <section id="budget" className="mb-8 scroll-mt-24">
-      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Budget Overview</h2>
+      <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Budget Overview</h2>
       <div className="card-premium p-6">
-        <div className="flex items-center justify-between mb-6">
-          <p className="text-xs text-white/40 font-accent">All trips combined</p>
-          <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-xs font-semibold text-amber-400 font-accent">
+        <div className="flex items-center justify-between mb-8">
+          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">All trips combined</p>
+          <span className="rounded-full bg-blue-600/10 px-3 py-1 text-xs font-bold text-blue-600 dark:text-blue-400 border border-blue-600/20">
             {pctUsed}% used
           </span>
         </div>
@@ -65,53 +65,50 @@ export function Budget() {
           <div className="relative flex-shrink-0">
             <DonutChart />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-lg font-bold text-white">${(total / 1000).toFixed(1)}k</span>
-              <span className="text-xs text-white/40">spent</span>
+              <span className="text-lg font-bold text-zinc-900 dark:text-zinc-100">${(total / 1000).toFixed(1)}k</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-400">spent</span>
             </div>
           </div>
 
           <div className="flex-1 min-w-0">
-            <div className="flex justify-between text-xs mb-1 text-white/40">
+            <div className="flex justify-between text-sm mb-2 text-zinc-500 dark:text-zinc-400">
               <span>Spent</span>
-              <span className="text-white font-medium">${total.toLocaleString()}</span>
+              <span className="text-zinc-900 dark:text-zinc-100 font-bold">${total.toLocaleString()}</span>
             </div>
-            <div className="progress mb-3">
-              <div className="progress-fill" style={{ width: `${pctUsed}%`, background: 'linear-gradient(90deg, #2563EB, #38BDF8)' }} />
+            <div className="progress mb-4 h-2 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
+              <div className="h-full rounded-full transition-all duration-1000 bg-blue-600 dark:bg-blue-500" style={{ width: `${pctUsed}%` }} />
             </div>
 
-            <div className="flex justify-between text-xs mb-1 text-white/40">
+            <div className="flex justify-between text-sm mb-2 text-zinc-500 dark:text-zinc-400">
               <span>Remaining</span>
-              <span className="font-medium text-green-400">${(totalBudget - total).toLocaleString()}</span>
+              <span className="font-bold text-zinc-900 dark:text-zinc-100">${(totalBudget - total).toLocaleString()}</span>
             </div>
-            <div className="progress">
-              <div className="progress-fill" style={{ width: `${100 - pctUsed}%`, background: '#86EFAC' }} />
+            <div className="progress h-2 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
+              <div className="h-full rounded-full transition-all duration-1000 bg-zinc-300 dark:bg-zinc-700" style={{ width: `${100 - pctUsed}%` }} />
             </div>
 
-            <div className="flex justify-between text-xs mt-3 text-white/40">
+            <div className="flex justify-between text-sm mt-4 pt-4 border-t border-black/5 dark:border-white/10 text-zinc-500 dark:text-zinc-400">
               <span>Total budget</span>
-              <span className="text-white">${totalBudget.toLocaleString()}</span>
+              <span className="text-zinc-900 dark:text-zinc-100 font-bold">${totalBudget.toLocaleString()}</span>
             </div>
           </div>
         </div>
 
         {/* Category breakdown */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4 mt-6">
           {categories.map((cat) => (
-            <div key={cat.name} className="flex items-center gap-3">
-              <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: cat.color }} />
-              <span className="text-xs flex-1 text-white/40">{cat.name}</span>
-              <div className="progress w-20">
-                <div className="progress-fill" style={{ width: `${cat.pct}%`, background: cat.color }} />
-              </div>
-              <span className="text-xs text-white w-12 text-right">${cat.amount.toLocaleString()}</span>
+            <div key={cat.name} className="flex items-center gap-4">
+              <div className="w-3 h-3 rounded-full flex-shrink-0 shadow-sm" style={{ background: cat.color }} />
+              <span className="text-sm font-medium flex-1 text-zinc-500 dark:text-zinc-400">{cat.name}</span>
+              <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100 w-16 text-right">${cat.amount.toLocaleString()}</span>
             </div>
           ))}
         </div>
 
         {/* Daily avg */}
-        <div className="mt-5 pt-4 flex items-center justify-between border-t border-white/[0.06]">
-          <span className="text-xs text-white/40">Daily avg spending</span>
-          <span className="text-sm font-medium text-brand-accent">$121 / day</span>
+        <div className="mt-6 pt-5 flex items-center justify-between border-t border-black/5 dark:border-white/10">
+          <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Daily avg spending</span>
+          <span className="text-sm font-bold text-zinc-900 dark:text-zinc-100">$121 / day</span>
         </div>
       </div>
     </section>

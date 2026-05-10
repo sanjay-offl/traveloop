@@ -9,7 +9,7 @@ const tasks = [
 export function Checklist() {
   return (
     <section id="checklist" className="mb-8 scroll-mt-24">
-      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Trip checklist</h2>
+      <h2 className="text-zinc-900 dark:text-zinc-100 mb-4 text-lg font-extrabold tracking-tight">Trip checklist</h2>
       <div className="card-premium p-5">
         <ul className="space-y-3">
           {tasks.map((t) => (
@@ -17,13 +17,13 @@ export function Checklist() {
               <span
                 className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm transition-all ${
                   t.done
-                    ? 'border-brand-accent bg-brand-accent/15 text-brand-accent'
-                    : 'border-white/15 text-transparent'
+                    ? 'border-blue-600 dark:border-blue-500 bg-blue-600 dark:bg-blue-500/15 text-blue-600 dark:text-blue-400'
+                    : 'border-black/5 dark:border-white/10 text-transparent'
                 }`}
               >
                 ✓
               </span>
-              <span className={t.done ? 'text-white/40 line-through' : 'text-white/80'}>{t.label}</span>
+              <span className={t.done ? 'text-zinc-500 dark:text-zinc-400 line-through' : 'text-zinc-500 dark:text-zinc-400'}>{t.label}</span>
             </li>
           ))}
         </ul>

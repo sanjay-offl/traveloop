@@ -49,10 +49,10 @@ export default function PopularDestinations() {
         >
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-brand-accent" />
-              <span className="font-accent text-xs uppercase tracking-widest text-brand-accent font-semibold">Handpicked For You</span>
+              <div className="h-px w-8 bg-blue-600 dark:bg-blue-500" />
+              <span className="font-accent text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Handpicked For You</span>
             </div>
-            <h2 className="heading-gradient text-5xl font-extrabold leading-tight tracking-tight lg:text-6xl">
+            <h2 className="text-zinc-900 dark:text-zinc-100 text-5xl font-extrabold leading-tight tracking-tight lg:text-6xl">
               Popular
               <br />
               Destinations
@@ -60,10 +60,10 @@ export default function PopularDestinations() {
           </div>
           <a
             href="/explore"
-            className="group mt-8 flex items-center gap-3 font-accent text-sm text-white/40 transition-colors hover:text-brand-accent md:mt-0"
+            className="group mt-8 flex items-center gap-3 font-accent text-sm text-zinc-500 dark:text-zinc-400 transition-colors hover:text-blue-600 dark:text-blue-400 md:mt-0"
           >
             <span className="uppercase tracking-widest text-xs">View all</span>
-            <div className="w-8 h-8 rounded-full border border-white/15 group-hover:border-brand-accent flex items-center justify-center transition-all group-hover:shadow-glow-sm">
+            <div className="w-8 h-8 rounded-full border border-black/5 dark:border-white/10 group-hover:border-accent-primary flex items-center justify-center transition-all group-hover:shadow-glow-sm">
               <span className="text-xs">→</span>
             </div>
           </a>
@@ -79,7 +79,7 @@ export default function PopularDestinations() {
               <img src={dest.image} alt={dest.name} />
 
               <div className="absolute left-4 top-4 z-10">
-                <span className="rounded-full border border-brand-accent/25 bg-brand-accent-dim px-3 py-1 font-accent text-xs font-semibold uppercase tracking-widest text-brand-accent backdrop-blur-md">
+                <span className="rounded-full border border-accent-primary/25 bg-blue-600 dark:bg-blue-500/10 px-3 py-1 font-accent text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400 backdrop-blur-md">
                   {dest.tag}
                 </span>
               </div>
@@ -87,16 +87,16 @@ export default function PopularDestinations() {
               <div className="card-content">
                 <div className="mb-2 flex items-start justify-between">
                   <div>
-                    <h3 className="text-xl font-bold text-white">{dest.name}</h3>
-                    <p className="mt-0.5 text-xs uppercase tracking-widest text-white/40">{dest.country}</p>
+                    <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">{dest.name}</h3>
+                    <p className="mt-0.5 text-xs uppercase tracking-widest text-zinc-500 dark:text-zinc-400">{dest.country}</p>
                   </div>
-                  <span className="text-xs font-semibold text-brand-accent">★ {dest.rating}</span>
+                  <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">★ {dest.rating}</span>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-white/[0.08] pt-4">
-                  <span className="text-xs text-white/35">{dest.duration}</span>
-                  <span className="text-sm font-semibold text-white">
-                    from <span className="text-brand-accent">{dest.price}</span>
+                <div className="mt-4 flex items-center justify-between border-t border-black/5 dark:border-white/10 pt-4">
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400">{dest.duration}</span>
+                  <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                    from <span className="text-blue-600 dark:text-blue-400">{dest.price}</span>
                   </span>
                 </div>
               </div>

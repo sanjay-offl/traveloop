@@ -17,33 +17,33 @@ const avatars = [
 export default function InspirationSection() {
   return (
     <section className="py-28 px-6 relative" id="inspiration">
-      <div className="glow-orb w-[500px] h-[500px] top-1/2 left-0 -translate-y-1/2 bg-brand-primary/8" />
+      
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div className="reveal" style={{ animationDelay: '0.06s' }}>
             <div className="mb-6 flex items-center gap-3">
-              <div className="h-px w-8 bg-brand-accent" />
-              <span className="font-accent text-xs uppercase tracking-widest text-brand-accent font-semibold">Travel Inspiration</span>
+              <div className="h-px w-8 bg-blue-600 dark:bg-blue-500" />
+              <span className="font-accent text-xs uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">Travel Inspiration</span>
             </div>
-            <h2 className="heading-gradient mb-8 text-5xl font-extrabold leading-tight tracking-tight lg:text-6xl">
+            <h2 className="text-zinc-900 dark:text-zinc-100 mb-8 text-5xl font-extrabold leading-tight tracking-tight lg:text-6xl">
               New Way To<br />Experience<br />The World
             </h2>
-            <blockquote className="mb-10 border-l-2 border-brand-accent pl-6">
-              <p className="text-sm italic leading-relaxed text-white/45">
+            <blockquote className="mb-10 border-l-2 border-blue-600 dark:border-blue-500 pl-6">
+              <p className="text-sm italic leading-relaxed text-zinc-500 dark:text-zinc-400">
                 &ldquo;The world is a book, and those who do not travel read only one page. Every journey is a story waiting to be written — let yours begin with Traveloop.&rdquo;
               </p>
-              <footer className="mt-3 text-xs uppercase tracking-widest text-white/30 font-accent">— Traveloop Community</footer>
+              <footer className="mt-3 text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-accent">— Traveloop Community</footer>
             </blockquote>
             <div className="flex items-center gap-6">
-              <button className="btn-primary-gradient px-8 py-4 text-xs font-semibold uppercase tracking-widest flex items-center gap-3">
+              <button className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl hover:scale-105 transition-transform px-8 py-4 text-xs font-semibold uppercase tracking-widest flex items-center gap-3">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                 Watch the Story
               </button>
               <div className="flex -space-x-3">
                 {avatars.map((src, i) => (
-                  <img key={i} src={src} alt="Traveler" className="w-10 h-10 rounded-full object-cover border-2 border-brand-black" />
+                  <img key={i} src={src} alt="Traveler" className="w-10 h-10 rounded-full object-cover border-2 border-bg-base" />
                 ))}
-                <div className="w-10 h-10 rounded-full border-2 border-brand-black flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}>
+                <div className="w-10 h-10 rounded-full border-2 border-bg-base flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}>
                   <span className="text-white text-xs font-bold">50K</span>
                 </div>
               </div>
