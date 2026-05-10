@@ -27,14 +27,34 @@ const kindIcon = {
 
 export function Notifications() {
   return (
+<<<<<<< HEAD
+    <section id="notifications" className="mb-8 scroll-mt-24">
+      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Notifications</h2>
+=======
     <section id="notifications" className="scroll-mt-24">
       <h3 className="mb-4 text-base font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
         Notifications
       </h3>
+>>>>>>> origin/main
       <div className="space-y-3">
         {alerts.map((a) => (
           <div
             key={a.title}
+<<<<<<< HEAD
+            className={`card-premium p-4 ${
+              a.unread ? 'border-brand-accent/25 bg-brand-accent/[0.04]' : ''
+            }`}
+          >
+            <div className="flex gap-3">
+              {a.unread ? (
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-brand-accent shadow-glow-sm" aria-hidden />
+              ) : (
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-white/15" aria-hidden />
+              )}
+              <div>
+                <p className="font-medium text-white">{a.title}</p>
+                <p className="mt-1 text-sm text-white/45">{a.body}</p>
+=======
             className="card flex gap-3 p-4"
             style={{
               borderColor: a.unread ? 'rgba(82,227,232,0.35)' : 'var(--card-border)',
@@ -51,6 +71,7 @@ export function Notifications() {
               <div className="flex items-center gap-2">
                 {a.unread ? <span className="notif-dot" /> : null}
                 <p className="font-medium text-white">{a.title}</p>
+>>>>>>> origin/main
               </div>
               <p className="mt-1 text-sm" style={{ color: 'var(--muted)' }}>
                 {a.body}

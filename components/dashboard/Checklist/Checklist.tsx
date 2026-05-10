@@ -14,6 +14,24 @@ export function Checklist() {
   const pct = Math.round((packed / total) * 100)
 
   return (
+<<<<<<< HEAD
+    <section id="checklist" className="mb-8 scroll-mt-24">
+      <h2 className="heading-gradient mb-4 text-lg font-extrabold tracking-tight">Trip checklist</h2>
+      <div className="card-premium p-5">
+        <ul className="space-y-3">
+          {tasks.map((t) => (
+            <li key={t.label} className="flex items-center gap-3">
+              <span
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border text-sm transition-all ${
+                  t.done
+                    ? 'border-brand-accent bg-brand-accent/15 text-brand-accent'
+                    : 'border-white/15 text-transparent'
+                }`}
+              >
+                ✓
+              </span>
+              <span className={t.done ? 'text-white/40 line-through' : 'text-white/80'}>{t.label}</span>
+=======
     <section id="checklist" className="scroll-mt-24">
       <h3 className="mb-4 text-base font-medium text-white" style={{ fontFamily: 'var(--font-display)' }}>
         Packing checklist
@@ -41,6 +59,7 @@ export function Checklist() {
             >
               <span className={`checkbox ${t.done ? 'checked' : ''}`}>{t.done ? '✓' : ''}</span>
               <span className={`text-sm ${t.done ? 'text-white/50 line-through' : 'text-white/90'}`}>{t.label}</span>
+>>>>>>> origin/main
             </li>
           ))}
         </ul>

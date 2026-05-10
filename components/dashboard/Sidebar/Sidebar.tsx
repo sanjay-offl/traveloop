@@ -27,11 +27,28 @@ export function Sidebar({ mobileOpen, onMobileClose }: DashboardSidebarProps) {
   return (
     <>
       <aside
+<<<<<<< HEAD
+        className={`fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r border-white/[0.06] bg-[#0B1220]/95 backdrop-blur-xl transition-transform duration-200 lg:translate-x-0 ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+=======
         className={`fixed left-0 top-0 z-40 flex h-screen w-[260px] flex-col border-r border-white/5 transition-transform duration-200 lg:static lg:translate-x-0 ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+>>>>>>> origin/main
         }`}
         style={{ background: '#060D08' }}
       >
+<<<<<<< HEAD
+        <div className="flex h-16 items-center gap-2 border-b border-white/[0.06] px-5">
+          <Link href="/dashboard" className="font-sans text-lg font-bold tracking-tight" onClick={onMobileClose}>
+            <span className="heading-gradient">Traveloop</span>
+          </Link>
+          <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/50 font-accent" style={{ background: 'linear-gradient(135deg, rgba(37,99,235,0.15), rgba(56,189,248,0.10))' }}>
+            Dashboard
+          </span>
+        </div>
+        <nav className="flex-1 space-y-0.5 overflow-y-auto p-3" aria-label="Dashboard">
+          {nav.map((item) => (
+=======
         <div className="flex items-center gap-3 border-b border-white/5 px-6 py-6">
           <div
             className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl"
@@ -42,11 +59,16 @@ export function Sidebar({ mobileOpen, onMobileClose }: DashboardSidebarProps) {
             </svg>
           </div>
           <div>
+>>>>>>> origin/main
             <Link
               href="/dashboard"
               className="text-base font-medium text-white"
               style={{ fontFamily: 'var(--font-display)' }}
               onClick={onMobileClose}
+<<<<<<< HEAD
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/55 transition-all hover:bg-white/[0.05] hover:text-white hover:shadow-glow-sm"
+=======
+>>>>>>> origin/main
             >
               Traveloop
             </Link>
@@ -88,6 +110,16 @@ export function Sidebar({ mobileOpen, onMobileClose }: DashboardSidebarProps) {
             </Link>
           ))}
         </nav>
+<<<<<<< HEAD
+        <div className="border-t border-white/[0.06] p-3">
+          <Link
+            href="/home"
+            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/45 transition-all hover:bg-white/[0.05] hover:text-white"
+          >
+            <span className="material-symbols-outlined text-xl">arrow_back</span>
+            Back to site
+          </Link>
+=======
 
         <div className="mx-4 mb-4 rounded-2xl p-4" style={{ background: 'var(--card)', border: '1px solid var(--card-border)' }}>
           <div className="flex items-center gap-3">
@@ -108,13 +140,14 @@ export function Sidebar({ mobileOpen, onMobileClose }: DashboardSidebarProps) {
               style={{ background: '#86EFAC', boxShadow: '0 0 6px rgba(134,239,172,0.5)' }}
             />
           </div>
+>>>>>>> origin/main
         </div>
       </aside>
 
       {mobileOpen ? (
         <button
           type="button"
-          className="fixed inset-0 z-30 bg-black/60 lg:hidden"
+          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
           aria-label="Close menu"
           onClick={onMobileClose}
         />

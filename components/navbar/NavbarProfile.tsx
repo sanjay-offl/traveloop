@@ -24,20 +24,21 @@ export function NavbarProfile() {
         aria-expanded={open}
         aria-haspopup="menu"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.06] py-1.5 pl-1.5 pr-3 text-left transition-colors hover:border-white/20 hover:bg-white/[0.09]"
+        className="flex items-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.04] py-1.5 pl-1.5 pr-3 text-left transition-all duration-300 hover:border-white/15 hover:bg-white/[0.08] hover:shadow-glow-sm"
       >
         <span
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-cyan/90 to-brand-cyan/40 text-sm font-semibold text-brand-black"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white"
+          style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}
           aria-hidden
         >
           JL
         </span>
         <span className="hidden min-w-0 sm:block">
           <span className="block truncate text-sm font-medium text-white">Jordan Lee</span>
-          <span className="block truncate text-xs text-white/45">Traveler</span>
+          <span className="block truncate text-xs text-white/40">Traveler</span>
         </span>
         <span
-          className={`material-symbols-outlined shrink-0 text-lg text-white/50 transition-transform duration-200 sm:text-xl ${open ? 'rotate-180' : ''}`}
+          className={`material-symbols-outlined shrink-0 text-lg text-white/40 transition-transform duration-200 sm:text-xl ${open ? 'rotate-180' : ''}`}
           aria-hidden
         >
           expand_more
@@ -47,12 +48,12 @@ export function NavbarProfile() {
       {open ? (
         <div
           role="menu"
-          className="absolute right-0 z-[60] mt-2 w-56 rounded-2xl border border-white/10 bg-brand-black/95 py-2 shadow-2xl shadow-black/40 backdrop-blur-xl"
+          className="absolute right-0 z-[60] mt-2 w-56 rounded-2xl border border-white/[0.08] bg-brand-black/95 py-2 shadow-2xl shadow-black/40 backdrop-blur-xl"
         >
           <Link
             role="menuitem"
             href="/login"
-            className="block px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/[0.06] hover:text-brand-cyan"
+            className="block px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/[0.06] hover:text-brand-accent"
             onClick={() => setOpen(false)}
           >
             Account &amp; settings
@@ -60,16 +61,16 @@ export function NavbarProfile() {
           <Link
             role="menuitem"
             href="#destinations"
-            className="block px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/[0.06] hover:text-brand-cyan"
+            className="block px-4 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/[0.06] hover:text-brand-accent"
             onClick={() => setOpen(false)}
           >
             Saved trips
           </Link>
-          <div className="my-1 h-px bg-white/10" />
+          <div className="my-1 h-px bg-white/[0.06]" />
           <Link
             role="menuitem"
             href="/"
-            className="block px-4 py-2.5 text-sm text-white/55 transition-colors hover:bg-white/[0.06] hover:text-white"
+            className="block px-4 py-2.5 text-sm text-white/45 transition-colors hover:bg-white/[0.06] hover:text-white"
             onClick={() => setOpen(false)}
           >
             Sign out

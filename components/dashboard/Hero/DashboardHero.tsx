@@ -2,6 +2,24 @@ import Link from 'next/link'
 
 export function DashboardHero() {
   return (
+<<<<<<< HEAD
+    <section id="hero" className="section-card relative mb-8 overflow-hidden px-6 py-10 sm:px-10">
+      <div className="glow-orb w-[350px] h-[350px] -top-32 -right-32 bg-brand-primary/10" />
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between relative z-10">
+        <div className="max-w-2xl space-y-3">
+          <p className="text-xs uppercase tracking-[0.18em] text-brand-accent font-accent font-semibold">Good afternoon</p>
+          <h1 className="heading-gradient font-sans text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+            Your trips, budget, and calendar in one calm place.
+          </h1>
+          <p className="text-sm leading-relaxed text-white/50 sm:text-base">
+            Plan multi-city routes, track spend, and stay on top of tasks without switching tabs.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/dashboard#trips"
+            className="btn-primary-gradient px-5 py-2.5 text-sm"
+=======
     <section
       id="hero"
       className="relative mb-8 overflow-hidden rounded-2xl border border-white/10"
@@ -38,11 +56,20 @@ export function DashboardHero() {
           <Link
             href="/dashboard#create-trip"
             className="btn-primary inline-flex items-center justify-center px-6 py-3 text-sm"
+>>>>>>> origin/main
           >
             Create trip
           </Link>
+<<<<<<< HEAD
+          <Link
+            href="/dashboard#explore"
+            className="btn-glass px-5 py-2.5 text-sm"
+          >
+            Explore ideas
+=======
           <Link href="/dashboard#explore" className="btn-ghost inline-flex items-center justify-center px-6 py-3 text-sm">
             Explore destinations
+>>>>>>> origin/main
           </Link>
         </div>
       </div>
