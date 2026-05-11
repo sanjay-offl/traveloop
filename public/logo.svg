@@ -1,0 +1,52 @@
+<svg viewBox="0 0 100 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Light Mode Gradient -->
+    <linearGradient id="ribbon-light" x1="0" y1="0" x2="100" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#1E40AF" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+    
+    <!-- Dark Mode Gradient -->
+    <linearGradient id="ribbon-dark" x1="0" y1="0" x2="100" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="50%" stop-color="#93C5FD" />
+      <stop offset="100%" stop-color="#DBEAFE" />
+    </linearGradient>
+  </defs>
+
+  <!-- Light mode (default) -->
+  <g class="light-mode">
+    <!-- Left loop -->
+    <path
+      d="M30 5C15 5 5 15 5 22.5C5 30 15 40 30 40C45 40 55 22.5 55 22.5L45 22.5C45 22.5 40 32 30 32C20 32 13 27 13 22.5C13 18 20 13 30 13C40 13 50 22.5 50 22.5L60 22.5C60 22.5 45 5 30 5Z"
+      fill="url(#ribbon-light)"
+    />
+    <!-- Right loop -->
+    <path
+      d="M70 5C85 5 95 15 95 22.5C95 30 85 40 70 40C55 40 45 22.5 45 22.5L55 22.5C55 22.5 60 32 70 32C80 32 87 27 87 22.5C87 18 80 13 70 13C60 13 50 22.5 50 22.5L40 22.5C40 22.5 55 5 70 5Z"
+      fill="url(#ribbon-light)"
+    />
+  </g>
+
+  <!-- Dark mode -->
+  <g class="dark-mode" style="display: none">
+    <!-- Left loop -->
+    <path
+      d="M30 5C15 5 5 15 5 22.5C5 30 15 40 30 40C45 40 55 22.5 55 22.5L45 22.5C45 22.5 40 32 30 32C20 32 13 27 13 22.5C13 18 20 13 30 13C40 13 50 22.5 50 22.5L60 22.5C60 22.5 45 5 30 5Z"
+      fill="url(#ribbon-dark)"
+    />
+    <!-- Right loop -->
+    <path
+      d="M70 5C85 5 95 15 95 22.5C95 30 85 40 70 40C55 40 45 22.5 45 22.5L55 22.5C55 22.5 60 32 70 32C80 32 87 27 87 22.5C87 18 80 13 70 13C60 13 50 22.5 50 22.5L40 22.5C40 22.5 55 5 70 5Z"
+      fill="url(#ribbon-dark)"
+    />
+  </g>
+
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .light-mode { display: none; }
+      .dark-mode { display: block; }
+    }
+  </style>
+</svg>

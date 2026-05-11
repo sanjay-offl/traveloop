@@ -17,13 +17,13 @@ export default function HomePage() {
       <ClientEffects />
       <Navbar />
       <Hero />
-      <section className="section-card grid gap-6 px-6 py-8 sm:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-14">
+      <section className="rounded-3xl grid gap-6 px-6 py-8 sm:px-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-14 bg-brand-cyan text-brand-black dark:bg-brand.surface dark:text-white">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.18em] text-brand-cyan">Full dashboard</p>
-          <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+          <h2 className="font-display text-3xl font-semibold text-current sm:text-4xl">
             The complete Traveloop planner is ready in the dashboard.
           </h2>
-          <p className="max-w-2xl text-sm leading-6 text-white/70 sm:text-base">
+          <p className="max-w-2xl text-sm leading-6 text-current/70 sm:text-base">
             Trips, budget, calendar, checklist, notifications, and profile controls all live in one place.
             Open the dashboard to see the full planning experience.
           </p>

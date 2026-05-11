@@ -14,6 +14,7 @@ import { DashboardProfile } from '../../components/dashboard/Profile/DashboardPr
 import { Stats } from '../../components/dashboard/Stats/Stats'
 import { Trips } from '../../components/dashboard/Trips/Trips'
 import { TimezonePanel } from '../../components/dashboard/Timezone/TimezonePanel'
+import Itinerary from '../../components/dashboard/Itinerary/Itinerary'
 
 export default function DashboardPage() {
   return (
@@ -30,6 +31,7 @@ export default function DashboardPage() {
           {/* Left Column (Main Content) */}
           <div className="lg:col-span-8 space-y-8">
             <Trips />
+            <Itinerary />
             <Calendar />
             <Explore />
             <Community />

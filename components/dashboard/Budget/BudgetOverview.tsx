@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { expenseSchema, type ExpenseInput } from '../../../lib/validations'
 import type { ExpenseType } from '../../../lib/types'
 import { useToast } from '../../ui/Toast'
+import { CustomDropdown } from '../../ui/CustomDropdown'
 
 // Enterprise schema expense types (lowercase)
 const CAT_COLORS: Record<ExpenseType, string> = {
@@ -122,15 +123,16 @@ export function BudgetOverview() {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-zinc-900 dark:text-zinc-100 text-lg font-extrabold tracking-tight">Budget Overview</h2>
         <div className="flex items-center gap-2">
-          <select 
-            value={currency} 
-            onChange={(e) => setCurrency(e.target.value as Currency)}
-            className="text-[10px] font-bold bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-md px-1.5 py-1 focus:outline-none focus:ring-1 focus:ring-blue-600/50"
-          >
-            <option value="INR">INR</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-          </select>
+          <CustomDropdown
+            value={currency}
+            onChange={(value) => setCurrency(value as Currency)}
+            options={[
+              { value: 'INR', label: '₹ Indian Rupee', icon: 'currency_rupee' },
+              { value: 'USD', label: '$ US Dollar', icon: 'attach_money' },
+              { value: 'EUR', label: '€ Euro', icon: 'euro' },
+            ]}
+            className="w-auto"
+          />
           <button type="button" onClick={() => setShowForm(!showForm)} className="btn-ghost text-xs px-3 py-1.5">
             {showForm ? 'Cancel' : 'Add Expense'}
           </button>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { NavbarProfile } from './NavbarProfile'
 import { ThemeToggle } from '../theme/ThemeToggle'
+import { TravelloopLogo } from '../ui/TravelloopLogo'
 
 export function Navbar() {
   return (
@@ -9,9 +10,10 @@ export function Navbar() {
       <div className="section-card flex flex-wrap items-center justify-between gap-4 px-6 py-4 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl">
         <Link
           href="/"
-          className="font-sans text-lg font-bold tracking-tight transition-colors hover:text-blue-600 dark:text-blue-400"
+          className="hover:opacity-80 transition-opacity"
+          title="Traveloop Home"
         >
-          <span className="text-zinc-900 dark:text-zinc-100">Traveloop</span>
+          <TravelloopLogo size={32} showText={false} />
         </Link>
         <div className="flex flex-wrap items-center justify-end gap-6 sm:gap-8">
           <nav className="flex flex-wrap items-center gap-5 text-sm text-zinc-600 dark:text-zinc-400 font-medium">

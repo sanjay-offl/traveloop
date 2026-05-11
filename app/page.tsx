@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { ThemeToggle } from '../components/theme/ThemeToggle'
+import { TravelloopLogo } from '../components/ui/TravelloopLogo'
 import { createClient } from '../utils/supabase/client'
 
 export default function AuthPage() {
@@ -18,7 +19,7 @@ export default function AuthPage() {
   }, [router])
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden bg-[#F1F1F1] dark:bg-[#050505]">
+    <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden bg-[var(--bg-base)] text-[var(--text-primary)]">
       {/* Ambient glow */}
       <div
         className="pointer-events-none absolute -top-32 -left-32 h-80 w-80 rounded-full opacity-[0.05] dark:opacity-[0.07]"
@@ -39,18 +40,15 @@ export default function AuthPage() {
       <div className="relative z-10 max-w-md w-full">
         <div className="section-card px-8 py-12 sm:px-10 sm:py-14">
           <div className="text-center mb-10">
-            {/* Logo icon */}
-            <div
-              className="mx-auto mb-5 w-14 h-14 rounded-2xl flex items-center justify-center text-white"
-              style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}
-            >
-              <span className="material-symbols-outlined text-2xl">travel_explore</span>
+            {/* Logo */}
+            <div className="mx-auto mb-6 flex justify-center">
+              <TravelloopLogo size={48} showText={false} />
             </div>
-            <h1 className="text-zinc-900 dark:text-zinc-100 text-4xl font-extrabold tracking-tight mb-2 font-sans">
+            <h1 className="text-[var(--text-primary)] text-4xl font-extrabold tracking-tight mb-2 font-sans">
               Traveloop
             </h1>
-            <p className="text-blue-600 dark:text-blue-400 text-base font-accent font-medium">Smart Travel Planning</p>
-            <p className="text-zinc-500 dark:text-zinc-400 mt-3 text-sm leading-relaxed">
+            <p className="text-[var(--accent-primary)] text-base font-accent font-medium">Smart Travel Planning</p>
+            <p className="text-[var(--text-secondary)] mt-3 text-sm leading-relaxed">
               Organize trips, manage destinations, and share itineraries — all in one place.
             </p>
           </div>

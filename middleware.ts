@@ -5,7 +5,8 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 
 // Routes that require authentication
-const PROTECTED_ROUTES = ['/dashboard']
+// NOTE: Dashboard is temporarily public for demo purposes - remove '/dashboard' to protect
+const PROTECTED_ROUTES: string[] = []
 
 // Routes that should redirect authenticated users away
 const AUTH_ROUTES = ['/login', '/register']

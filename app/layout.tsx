@@ -22,11 +22,13 @@ export const metadata: Metadata = {
     'Traveloop is a smart and user friendly multi city travel planning platform that helps users organize trips, manage destinations, schedule activities, track budgets, and share itineraries through a clean and responsive interface.',
   icons: {
     icon: [
+      { url: '/logo.svg', type: 'image/svg+xml' },
       { url: '/logo.png', type: 'image/png' },
     ],
     apple: [
       { url: '/logo.png', type: 'image/png' },
     ],
+    shortcut: ['/logo.svg'],
   },
   openGraph: {
     title: 'Traveloop — Smart Multi-City Travel Planning',
@@ -70,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
       </head>
-      <body className="bg-[#F1F1F1] dark:bg-[#050505] text-zinc-900 dark:text-zinc-100 font-sans antialiased selection:bg-blue-600 dark:selection:bg-blue-500/20 selection:text-white dark:selection:text-white transition-colors duration-300">
+      <body className="bg-[var(--bg-base)] text-[var(--text-primary)] font-sans antialiased selection:bg-[var(--accent-primary)] selection:text-white transition-colors duration-300">
         <ThemeProvider>
           <ToastProvider>
             {children}
