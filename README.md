@@ -5,7 +5,30 @@
 **🌐 Live Demo:** [https://traveloop-odoo.netlify.app](https://traveloop-odoo.netlify.app)
 
 **📦 Repository:** [github.com/sanjay-offl/traveloop](https://github.com/sanjay-offl/traveloop)
+---
 
+## Demo Login & Email Verification
+
+### Email Verification Required
+Traveloop uses secure authentication powered by Supabase Auth.
+
+After creating a new account:
+1. Verify your email address
+2. Check your Gmail inbox for the verification link
+3. Open the verification email and confirm your account
+4. Login after verification is completed
+
+> ⚠️ If you do not see the email, check your **Spam/Junk** folder.
+
+---
+
+### Demo Account
+
+For quick testing and demo purposes, you can use the following credentials:
+
+```txt
+Email: pgnithyashree2006@gmail.com
+Password: 123456
 ---
 
 ## Overview
