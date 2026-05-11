@@ -6,6 +6,7 @@ import { useAuthProfile } from '../../../hooks/useAuthProfile'
 import { createClient } from '../../../utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { TravelloopLogo } from '../../ui/TravelloopLogo'
 
 const nav = [
   { href: '/dashboard', label: 'Overview', icon: 'dashboard' },
@@ -49,13 +50,13 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           mobileOpen ? 'translate-x-0' : '-translate-x-[120%]'
         }`}
       >
-        {/* Logo */}
+        {/* ── Logo ── */}
         <div className="flex h-16 shrink-0 items-center gap-2.5 border-b border-black/5 dark:border-white/10 px-5">
-          <Link href="/dashboard" className="font-sans text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100" onClick={onMobileClose}>
-            Traveloop
+          <Link href="/dashboard" className="hover:opacity-80 transition-opacity" onClick={onMobileClose}>
+            <TravelloopLogo size={28} />
           </Link>
-          <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-600/8 dark:bg-blue-400/10 border border-blue-600/15 dark:border-blue-400/20 font-accent">
-            Dashboard
+          <span className="ml-auto rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-600/8 dark:bg-blue-400/10 border border-blue-600/15 dark:border-blue-400/20 font-accent shrink-0">
+            Beta
           </span>
         </div>
 

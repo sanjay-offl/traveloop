@@ -7,6 +7,7 @@ import { createClient } from '../../utils/supabase/client'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { registerSchema, type RegisterInput } from '../../lib/validations'
+import { TravelloopLogo } from '../../components/ui/TravelloopLogo'
 
 const RegisterPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -56,10 +57,10 @@ const RegisterPage: React.FC = () => {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F1F1F1] dark:bg-[#050505] font-sans">
-      <header className="flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl px-4 py-4 md:px-10">
-        <Link href="/" className="font-sans text-2xl font-bold tracking-tight hover:opacity-80 transition-opacity">
-          <span className="text-zinc-900 dark:text-zinc-100">Traveloop</span>
+    <div className="flex min-h-screen flex-col bg-[#F1F1F1] dark:bg-[#050505] font-sans transition-colors duration-500">
+      <header className="flex w-full items-center justify-between border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#111111]/90 backdrop-blur-xl px-4 py-3 md:px-10">
+        <Link href="/" className="hover:opacity-80 transition-opacity">
+          <TravelloopLogo size={32} />
         </Link>
         <div className="flex items-center gap-3">
           <span className="hidden text-sm text-zinc-500 dark:text-zinc-400 sm:inline">Already have an account?</span>
@@ -72,13 +73,9 @@ const RegisterPage: React.FC = () => {
       <main className="flex-grow flex items-start justify-center py-10 px-4">
         <div className="w-full max-w-[500px] section-card overflow-hidden">
           <div className="pt-10 pb-6 flex flex-col items-center">
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center text-white mb-5"
-              style={{ background: 'linear-gradient(135deg, #2563EB, #38BDF8)' }}
-            >
-              <span className="material-symbols-outlined text-2xl">person_add</span>
-            </div>
+            <TravelloopLogo size={64} showText={false} className="mb-6" />
             <h1 className="text-zinc-900 dark:text-zinc-100 text-2xl font-extrabold tracking-tight text-center">Create account</h1>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2 text-center">Join Traveloop — it&apos;s free</p>
           </div>
 
           <div className="px-8 md:px-10 pb-10">
@@ -154,14 +151,14 @@ const RegisterPage: React.FC = () => {
               </div>
 
               {serverError && (
-                <div className="flex items-start gap-2 rounded-xl bg-red-50 border border-red-200 px-4 py-3">
-                  <p className="text-sm text-red-600">{serverError}</p>
+                <div className="flex items-start gap-2 rounded-xl bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 px-4 py-3">
+                  <p className="text-sm text-red-600 dark:text-red-400">{serverError}</p>
                 </div>
               )}
 
               {message && (
-                <div className="flex items-start gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-4 py-3">
-                  <p className="text-sm text-emerald-700">{message}</p>
+                <div className="flex items-start gap-2 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-4 py-3">
+                  <p className="text-sm text-emerald-700 dark:text-emerald-400">{message}</p>
                 </div>
               )}
 

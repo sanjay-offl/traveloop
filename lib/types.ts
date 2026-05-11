@@ -1,8 +1,8 @@
-// Typed DB interfaces matching the enterprise schema
-export type TripVisibility = 'private' | 'public' | 'shared'
-export type TripStatus     = 'planning' | 'active' | 'completed' | 'archived'
+// Typed DB interfaces matching the enterprise schema (migration 20240101000002)
+export type TripVisibility  = 'private' | 'public' | 'shared'
+export type TripStatus      = 'planning' | 'active' | 'completed' | 'archived'
 export type ActivityCategory = 'sightseeing'|'food'|'adventure'|'transport'|'accommodation'|'shopping'|'culture'|'nightlife'|'wellness'|'other'
-export type ExpenseType    = 'Flights'|'Hotels'|'Food & Dining'|'Activities'|'Transport'|'Other'
+export type ExpenseType     = 'flights'|'accommodation'|'food'|'transport'|'activities'|'shopping'|'other'
 export type PackingCategory = 'clothing'|'electronics'|'documents'|'toiletries'|'medical'|'gear'|'other'
 
 export interface Profile {
@@ -63,12 +63,13 @@ export interface Activity {
   updated_at: string
 }
 
+// Enterprise schema: expenses link directly to trip_id (no budgets table)
 export interface Expense {
   id: string
-  budget_id: string
-  title: string
+  trip_id: string
+  type: ExpenseType
   amount: number
-  category: ExpenseType
+  description: string
   date: string
   created_at: string
 }
@@ -108,4 +109,14 @@ export interface CommunityPost {
   created_at: string
   updated_at: string
   profiles?: Pick<Profile, 'full_name' | 'avatar_url'>
+}
+
+export interface NotificationItem {
+  id: string
+  icon: string
+  color: string
+  title: string
+  body: string
+  time: string
+  unread: boolean
 }

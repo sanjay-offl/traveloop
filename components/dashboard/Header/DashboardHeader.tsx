@@ -6,6 +6,7 @@ import { useAuthProfile } from '../../../hooks/useAuthProfile'
 import { createClient } from '../../../utils/supabase/client'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import { TravelloopLogo } from '../../ui/TravelloopLogo'
 
 type DashboardHeaderProps = {
   onOpenNav: () => void
@@ -42,7 +43,7 @@ export function DashboardHeader({ onOpenNav }: DashboardHeaderProps) {
 
   return (
     <header className="sticky top-0 z-20 border-b border-black/5 dark:border-white/10 bg-white/90 dark:bg-[#111111]/90 px-4 py-3 backdrop-blur-xl sm:px-6">
-      <div className="mx-auto flex max-w-6xl items-center gap-4">
+      <div className="mx-auto flex max-w-6xl items-center gap-3">
         {/* Mobile menu button */}
         <button
           type="button"
@@ -52,6 +53,9 @@ export function DashboardHeader({ onOpenNav }: DashboardHeaderProps) {
         >
           <span className="material-symbols-outlined">menu</span>
         </button>
+
+        {/* Mobile logo — only shown when sidebar is hidden */}
+        <TravelloopLogo size={24} showText={false} className="lg:hidden" />
 
         {/* Search */}
         <div className="relative hidden min-w-0 flex-1 sm:block">

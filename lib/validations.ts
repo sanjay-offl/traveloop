@@ -53,12 +53,12 @@ export const activitySchema = z.object({
 })
 export type ActivityInput = z.infer<typeof activitySchema>
 
-// ─── Expenses ───────────────────────────────────────────
+// ─── Expenses (enterprise schema: type + description, links to trip_id) ────
 export const expenseSchema = z.object({
-  title:    z.string().min(2, 'Title is required').max(100),
-  amount:   z.coerce.number().min(0.01, 'Amount must be greater than 0'),
-  category: z.enum(['Flights','Hotels','Food & Dining','Activities','Transport','Other']).default('Other'),
-  date:     z.string().optional(),
+  description: z.string().min(2, 'Description is required').max(100),
+  amount:      z.coerce.number().min(0.01, 'Amount must be greater than 0'),
+  type:        z.enum(['flights','accommodation','food','transport','activities','shopping','other']).default('other'),
+  date:        z.string().optional(),
 })
 export type ExpenseInput = z.infer<typeof expenseSchema>
 

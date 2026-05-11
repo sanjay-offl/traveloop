@@ -1,3 +1,6 @@
+'use client'
+
+import React from 'react'
 import { Activity } from '../../components/dashboard/Activity/Activity'
 import Budget from '../../components/dashboard/Budget/BudgetOverview'
 import Calendar from '../../components/dashboard/Calendar/Calendar'
@@ -10,29 +13,45 @@ import { Notifications } from '../../components/dashboard/Notifications/Notifica
 import { DashboardProfile } from '../../components/dashboard/Profile/DashboardProfile'
 import { Stats } from '../../components/dashboard/Stats/Stats'
 import { Trips } from '../../components/dashboard/Trips/Trips'
+import { TimezonePanel } from '../../components/dashboard/Timezone/TimezonePanel'
 
 export default function DashboardPage() {
   return (
-    <div className="mx-auto max-w-6xl pb-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-10">
       <DashboardHero />
-      <Stats />
-      <div className="grid gap-8 xl:grid-cols-3">
-        <div className="space-y-8 xl:col-span-2">
-          <Trips />
-          <Calendar />
-          <Explore />
-          <Community />
-        </div>
-        <div className="space-y-8">
-          <Budget />
-          <Activity />
-          <Checklist />
-          <Notifications />
+      
+      <div className="grid gap-8">
+        {/* Top Row: Stats Overview */}
+        <Stats />
+        
+        {/* Main Dashboard Layout */}
+        <div className="grid gap-8 lg:grid-cols-12">
+          
+          {/* Left Column (Main Content) */}
+          <div className="lg:col-span-8 space-y-8">
+            <Trips />
+            <Calendar />
+            <Explore />
+            <Community />
+          </div>
+
+          {/* Right Column (Widgets & Utilities) */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
+              <Budget />
+              <TimezonePanel destinationName="London" destinationTimezone="Europe/London" />
+            </div>
+            <Activity />
+            <Checklist />
+            <Notifications />
+          </div>
         </div>
       </div>
-      <div className="mt-10">
+
+      <div className="mt-12 pt-12 border-t border-black/5 dark:border-white/5">
         <DashboardProfile />
       </div>
+      
       <DashboardFooter />
     </div>
   )

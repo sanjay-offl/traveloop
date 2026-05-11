@@ -1,5 +1,5 @@
 export { Activity } from './Activity/Activity'
-export { Budget } from './Budget/BudgetOverview'
+export { default as Budget } from './Budget/BudgetOverview'
 export { Calendar } from './Calendar/Calendar'
 export { Checklist } from './Checklist/Checklist'
 export { Community } from './Community/Community'

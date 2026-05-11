@@ -1,108 +1,153 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '../utils/supabase/client'
+import type { Expense } from '../lib/types'
+import { MOCK_EXPENSES, MOCK_TRIPS } from './useMockData'
 
-export type BudgetCategory = 'Flights' | 'Hotels' | 'Food & Dining' | 'Activities' | 'Transport' | 'Other'
-
-export interface Expense {
-  id: string
-  budget_id: string
-  title: string
-  amount: number
-  category: BudgetCategory
-  date: string
-  created_at: string
-}
-
-export interface Budget {
-  id: string
-  trip_id: string
-  total_budget: number
-}
+export type { Expense }
 
 export function useBudget(tripId: string | null = null) {
-  const [budget, setBudget] = useState<Budget | null>(null)
-  const [expenses, setExpenses] = useState<Expense[]>([])
-  const [loading, setLoading] = useState(true)
+  const [expenses, setExpenses]   = useState<Expense[]>([])
+  const [totalBudget, setTotalBudget] = useState(0)
+  const [loading, setLoading]     = useState(true)
+  const [usingMock, setUsingMock] = useState(false)
   const supabase = createClient()
 
-  const fetchBudgetAndExpenses = useCallback(async () => {
+  const fetchExpenses = useCallback(async () => {
     try {
       setLoading(true)
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
 
-      // Find the trip
-      let currentTripId = tripId
-      if (!currentTripId) {
-        const { data: trip } = await supabase.from('trips').select('id').eq('user_id', user.id).order('created_at', { ascending: false }).limit(1).maybeSingle()
-        currentTripId = trip?.id || null
-      }
-      
-      if (!currentTripId) {
-        setBudget(null)
-        setExpenses([])
+      const { data: { user } } = await supabase.auth.getUser()
+
+      if (!user) {
+        // Not authenticated — show mock expenses
+        const mockTrip = MOCK_TRIPS.find(t => t.id === (tripId || 'mock-trip-001')) || MOCK_TRIPS[0]
+        setExpenses(MOCK_EXPENSES.filter(e => e.trip_id === mockTrip.id))
+        setTotalBudget(mockTrip.total_budget)
+        setUsingMock(true)
         return
       }
 
-      // Fetch or auto-create budget
-      let { data: bData } = await supabase.from('budgets').select('*').eq('trip_id', currentTripId).maybeSingle()
-      if (!bData) {
-        const { data: newB } = await supabase.from('budgets').insert([{ trip_id: currentTripId, total_budget: 5000 }]).select().single()
-        bData = newB
-      }
-      
-      setBudget(bData)
+      // Enterprise schema: expenses link directly to trip_id (no budgets table)
+      let currentTripId = tripId
+      if (!currentTripId) {
+        const { data: trip } = await supabase
+          .from('trips')
+          .select('id, total_budget')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle()
 
-      if (bData) {
-        const { data: eData } = await supabase.from('expenses').select('*').eq('budget_id', bData.id).order('created_at', { ascending: true })
-        setExpenses(eData || [])
+        currentTripId = trip?.id || null
+        if (trip?.total_budget) setTotalBudget(Number(trip.total_budget))
+      } else {
+        const { data: trip } = await supabase
+          .from('trips')
+          .select('total_budget')
+          .eq('id', currentTripId)
+          .maybeSingle()
+        if (trip?.total_budget) setTotalBudget(Number(trip.total_budget))
       }
 
+      if (!currentTripId) {
+        setExpenses(MOCK_EXPENSES)
+        setTotalBudget(MOCK_TRIPS[0].total_budget)
+        setUsingMock(true)
+        return
+      }
+
+      const { data: eData, error: eErr } = await supabase
+        .from('expenses')
+        .select('*')
+        .eq('trip_id', currentTripId)
+        .order('created_at', { ascending: true })
+
+      if (eErr) throw eErr
+
+      if (!eData || eData.length === 0) {
+        // Trip exists but no expenses yet — show mock expenses for demo
+        setExpenses(MOCK_EXPENSES)
+        setUsingMock(true)
+      } else {
+        setExpenses(eData as Expense[])
+        setUsingMock(false)
+      }
     } catch (e) {
-      console.error(e)
+      console.warn('[useBudget] Supabase fetch failed, falling back to mock data:', e)
+      setExpenses(MOCK_EXPENSES)
+      setTotalBudget(MOCK_TRIPS[0].total_budget)
+      setUsingMock(true)
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [tripId]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    fetchBudgetAndExpenses()
+    fetchExpenses()
 
-    const channel1 = supabase.channel(`public:expenses-${Math.random()}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'expenses' }, () => fetchBudgetAndExpenses())
+    const ch = supabase
+      .channel(`expenses-${Math.random()}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'expenses' }, fetchExpenses)
       .subscribe()
 
-    const channel2 = supabase.channel(`public:budgets-${Math.random()}`)
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'budgets' }, () => fetchBudgetAndExpenses())
-      .subscribe()
+    return () => { supabase.removeChannel(ch) }
+  }, [fetchExpenses]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    return () => {
-      supabase.removeChannel(channel1)
-      supabase.removeChannel(channel2)
+  async function addExpense(input: { description: string; amount: number; type: string; date?: string }, expTripId?: string) {
+    if (usingMock) {
+      const newExp: Expense = {
+        id: `mock-exp-${Date.now()}`,
+        trip_id: expTripId || tripId || 'mock-trip-001',
+        type: input.type as Expense['type'],
+        amount: input.amount,
+        description: input.description,
+        date: input.date || new Date().toISOString().slice(0, 10),
+        created_at: new Date().toISOString(),
+      }
+      setExpenses(prev => [...prev, newExp])
+      return null
     }
-  }, [fetchBudgetAndExpenses, tripId])
 
-  async function updateTotalBudget(amount: number) {
-    if (!budget) return
-    const { error } = await supabase.from('budgets').update({ total_budget: amount }).eq('id', budget.id)
-    if (!error) fetchBudgetAndExpenses()
-  }
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return new Error('Not authenticated')
 
-  async function addExpense(input: any) {
-    if (!budget) return
+    let currentTripId = expTripId || tripId
+    if (!currentTripId) {
+      const { data: trip } = await supabase
+        .from('trips')
+        .select('id')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      currentTripId = trip?.id || null
+    }
+
+    if (!currentTripId) return new Error('No trip found')
+
     const { error } = await supabase.from('expenses').insert([{
-      budget_id: budget.id,
-      ...input
+      ...input,
+      trip_id: currentTripId,
     }])
-    if (!error) fetchBudgetAndExpenses()
+    if (!error) fetchExpenses()
     return error
   }
 
   const totalSpent = expenses.reduce((sum, e) => sum + Number(e.amount), 0)
   const byType = expenses.reduce((acc, e) => {
-    acc[e.category] = (acc[e.category] || 0) + Number(e.amount)
+    acc[e.type] = (acc[e.type] || 0) + Number(e.amount)
     return acc
   }, {} as Record<string, number>)
 
-  return { budget, expenses, loading, updateTotalBudget, addExpense, totalSpent, byType }
+  return {
+    expenses,
+    totalBudget,
+    loading,
+    usingMock,
+    addExpense,
+    totalSpent,
+    byType,
+    // Legacy compat: budget object shape
+    budget: totalBudget ? { id: 'virtual', trip_id: tripId || '', total_budget: totalBudget } : null,
+  }
 }
